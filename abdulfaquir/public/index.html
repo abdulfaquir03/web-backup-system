@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de desenvolvimento web</title>
+    <link rel="shortcut icon" href="https://i.ibb.co/1YB7PwBT/original-ad400c8f1e8a58f19dd2ea3fcd3d56d3.webp" type="image/webp">
+    
+    <meta name="title" content="Curso Completo de Desenvolvimento Web por 190 MZN">
+    <meta name="description" content="Aprenda HTML, CSS, JavaScript, Node.js, Express, Sequelize e PostgreSQL do zero. Promoção exclusiva por apenas 190 MZN com acesso à plataforma completa.">
+    <meta name="keywords" content="curso de desenvolvimento web, html, css, javascript, nodejs, postgresql, mocambique, devacademy">
+    <meta name="author" content="Abdul faquir">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdulfaquir.vercel.app/">
+    <meta property="og:title" content="Curso de Desenvolvimento Web por 190 MZN">
+    <meta property="og:description" content="Domine o desenvolvimento web do zero ao profissional com projetos práticos, aulas interativas e acompanhamento direto. Inscreva-se hoje por apenas 190 MZN!">
+    <meta property="og:image" content="https://cdn.dribbble.com/userupload/36538225/file/original-ad400c8f1e8a58f19dd2ea3fcd3d56d3.png?resize=752x&vertical=center" type="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Curso de Desenvolvimento Web">
+    <meta property="og:site_name" content="Abdul faquir">
+    <meta property="og:locale" content="pt_MZ">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://abdulfaquir.vercel.app/">
+    <meta name="twitter:title" content="Curso Completo de Desenvolvimento Web por 190 MZN">
+    <meta name="twitter:description" content="Aprenda HTML, CSS, JS, Node.js e Banco de Dados com suporte e exercícios práticos. Promoção por tempo limitado!">
+    <meta name="twitter:image" content="https://cdn.dribbble.com/userupload/36538225/file/original-ad400c8f1e8a58f19dd2ea3fcd3d56d3.png?resize=752x&vertical=center" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- SECCAO 1: Landing Page (Página de Vendas) -->
+    <section id="sec-landing" class="view-section flex-1 flex flex-col">
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="ri-code-s-slash-line text-3xl text-indigo-600"></i>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">DevAcademy</span>
+                </div>
+                <button onclick="goToSection('sec-auth')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl font-medium transition shadow-sm">
+                    Entrar / Cadastrar
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 flex items-center justify-center px-4 py-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="bg-indigo-50 text-indigo-700 text-sm font-semibold px-4 py-1.5 rounded-full inline-block mb-6">Curso Completo 2026</span>
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
+                    Domine o Desenvolvimento Web do Zero ao Profissional
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
+                    Aprenda HTML, CSS, JavaScript moderno, Node.js, Express, Sequelize e PostgreSQL com projetos práticos e suporte direto do formador.
+                </p>
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 max-w-md mx-auto mb-8">
+                    <div class="text-slate-400 line-through text-sm">De 3.500 MZN</div>
+                    <div class="text-4xl font-extrabold text-indigo-600 my-2">190 MZN</div>
+                    <p class="text-sm text-slate-500 mb-6">Promoção por tempo limitado com acesso completo.</p>
+                    <button onclick="goToSection('sec-auth')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 rounded-xl transition shadow-md shadow-indigo-100">
+                        Acessar o Curso Agora
+                    </button>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- SECCAO 2: Autenticação (Login / Cadastro) -->
+    <section id="sec-auth" class="view-section hidden flex-1 flex items-center justify-center px-4 py-12 bg-slate-100">
+        <div class="bg-white w-full max-w-md p-8 rounded-3xl shadow-xl border border-slate-100">
+            <div class="text-center mb-8">
+                <h2 id="auth-title" class="text-2xl font-bold text-slate-900">Bem-vindo de volta</h2>
+                <p class="text-sm text-slate-500 mt-1">Entre na sua conta para continuar</p>
+            </div>
+
+            <div id="auth-error" class="hidden mb-4 bg-red-50 text-red-600 p-3 rounded-xl text-sm font-medium text-center"></div>
+
+            <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-4">
+                <div id="name-field" class="hidden">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Nome Completo</label>
+                    <input type="text" id="input-name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">E-mail</label>
+                    <input type="email5" id="input-email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Senha</label>
+                    <input type="password" id="input-password" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                </div>
+                <button type="submit" id="auth-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 rounded-xl transition shadow-md">
+                    Entrar
+                </button>
+            </form>
+
+            <div class="text-center mt-6">
+                <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-sm text-indigo-600 font-medium hover:underline">
+                    Não tem uma conta? Cadastre-se
+                </button>
+            </div>
+            <div class="text-center mt-2">
+                <button onclick="goToSection('sec-landing')" class="text-xs text-slate-400 hover:text-slate-600">
+                    &larr; Voltar para a página inicial
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCAO 3: Painel do Aluno -->
+    <section id="sec-user" class="view-section hidden flex-1 flex flex-col bg-slate-50">
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-100 text-indigo-700 font-bold p-2 rounded-xl" id="user-avatar-initials">U</div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm" id="user-display-name">Nome Aluno</h3>
+                        <span class="text-xs text-slate-500" id="user-badge-status">Estudante</span>
+                    </div>
+                </div>
+                <button onclick="logout()" class="text-slate-500 hover:text-red-600 font-medium text-sm flex items-center space-x-1">
+                    <i class="ri-logout-box-line text-lg"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Alerta de Inscrição Pendente -->
+        <div id="enrollment-alert" class="hidden bg-amber-50 border-b border-amber-200 px-4 py-3">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+                <div class="flex items-center space-x-3 text-amber-800 text-sm">
+                    <i class="ri-alert-line text-xl text-amber-600"></i>
+                    <span>Você ainda não concluiu sua inscrição! Seu acesso está limitado aos primeiros conteúdos.</span>
+                </div>
+                <button onclick="openWhatsAppEnroll()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-sm font-semibold flex items-center space-x-2 transition shadow-sm">
+                    <i class="ri-whatsapp-line text-lg"></i>
+                    <span>Fazer Inscrição Agora (190 MZN)</span>
+                </button>
+            </div>
+        </div>
+
+        <main class="max-w-7xl mx-auto w-full px-4 py-6 flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Coluna Esquerda: Player e Conteúdos -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Player de Vídeo -->
+                <div class="bg-white rounded-3xl p-4 shadow-sm border border-slate-200">
+                    <div id="video-container" class="aspect-video bg-slate-900 rounded-2xl overflow-hidden flex items-center justify-center relative">
+                        <div class="text-slate-400 text-center p-6">
+                            <i class="ri-play-circle-line text-5xl mb-2 inline-block"></i>
+                            <p>Selecione uma aula na lista ao lado para começar</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 px-2">
+                        <div>
+                            <h4 id="current-lesson-title" class="font-bold text-lg text-slate-900">Nenhuma aula selecionada</h4>
+                            <p id="current-lesson-desc" class="text-sm text-slate-500">-</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button id="btn-complete-lesson" onclick="toggleLessonComplete()" class="hidden bg-slate-100 hover:bg-emerald-50 text-slate-600 hover:text-emerald-600 px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center space-x-1">
+                                <i class="ri-check-line text-lg"></i>
+                                <span id="complete-btn-text">Marcar como Concluída</span>
+                            </button>
+                            <button onclick="playNextLesson()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center space-x-1">
+                                <span>Próxima Aula</span>
+                                <i class="ri-arrow-right-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abas do Aluno: Módulos, Materiais, Exercícios -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                    <div class="flex space-x-4 border-b border-slate-100 pb-4 mb-6">
+                        <button onclick="switchStudentTab('modules')" id="tab-btn-modules" class="font-semibold text-indigo-600 pb-1 border-b-2 border-indigo-600">Módulos & Aulas</button>
+                        <button onclick="switchStudentTab('materials')" id="tab-btn-materials" class="font-semibold text-slate-400 hover:text-slate-600 pb-1">Materiais PDF</button>
+                        <button onclick="switchStudentTab('exercises')" id="tab-btn-exercises" class="font-semibold text-slate-400 hover:text-slate-600 pb-1">Exercícios</button>
+                    </div>
+
+                    <!-- Conteúdo da Aba Módulos -->
+                    <div id="student-tab-modules" class="space-y-4">
+                        <div id="student-modules-list" class="space-y-4"></div>
+                    </div>
+
+                    <!-- Conteúdo da Aba Materiais -->
+                    <div id="student-tab-materials" class="hidden space-y-3">
+                        <div id="student-materials-list" class="space-y-2"></div>
+                    </div>
+
+                    <!-- Conteúdo da Aba Exercícios -->
+                    <div id="student-tab-exercises" class="hidden space-y-6">
+                        <div id="student-exercises-list" class="space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Progresso e Informações -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-slate-900 mb-4">Seu Progresso</h4>
+                    <div class="w-full bg-slate-100 rounded-full h-3 mb-2 overflow-hidden">
+                        <div id="progress-bar-fill" class="bg-indigo-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                    <p id="progress-text" class="text-xs text-slate-500">0% concluído</p>
+                </div>
+
+                <div class="bg-indigo-900 text-white rounded-3xl p-6 shadow-sm relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h4 class="font-bold text-lg mb-2">Suporte do Formador</h4>
+                        <p class="text-indigo-200 text-sm mb-4">Tem dúvidas sobre as aulas ou exercícios? Fale diretamente pelo WhatsApp.</p>
+                        <a href="https://wa.me/258879181555" target="_blank" class="inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
+                            <i class="ri-whatsapp-line text-lg"></i>
+                            <span>Abrir WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- SECCAO 4: Painel do Admin / Formador -->
+    <section id="sec-admin" class="view-section hidden flex-1 flex flex-col bg-slate-50">
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 text-white font-bold p-2 rounded-xl">ADM</div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Painel do Formador</h3>
+                        <span class="text-xs text-indigo-600 font-medium">Gerenciamento Completo</span>
+                    </div>
+                </div>
+                <button onclick="logout()" class="text-slate-500 hover:text-red-600 font-medium text-sm flex items-center space-x-1">
+                    <i class="ri-logout-box-line text-lg"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto w-full px-4 py-6 flex-1 space-y-6">
+            <!-- Menu de Abas Admin -->
+            <div class="bg-white rounded-3xl p-4 shadow-sm border border-slate-200 flex flex-wrap gap-2">
+                <button onclick="switchAdminTab('students')" id="adm-tab-students" class="px-5 py-2.5 rounded-xl font-semibold text-sm bg-indigo-600 text-white transition">Estudantes</button>
+                <button onclick="switchAdminTab('modules')" id="adm-tab-modules" class="px-5 py-2.5 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Módulos & Aulas</button>
+                <button onclick="switchAdminTab('materials')" id="adm-tab-materials" class="px-5 py-2.5 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Materiais</button>
+                <button onclick="switchAdminTab('exercises')" id="adm-tab-exercises" class="px-5 py-2.5 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Exercícios & Submissões</button>
+            </div>
+
+            <!-- TAB 1: Estudantes -->
+            <div id="adm-content-students" class="admin-tab-content space-y-4">
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-lg text-slate-900 mb-4">Desempenho e Inscrição dos Estudantes</h4>
+                    <div id="admin-students-list" class="space-y-4"></div>
+                </div>
+            </div>
+
+            <!-- TAB 2: Módulos e Aulas -->
+            <div id="adm-content-modules" class="admin-tab-content hidden space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Cadastrar Módulo -->
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-slate-900 mb-4">Cadastrar Novo Módulo</h4>
+                        <form onsubmit="createModule(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Nome do Módulo</label>
+                                <input type="text" id="mod-title" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Descrição</label>
+                                <textarea id="mod-desc" rows="3" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none"></textarea>
+                            </div>
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2.5 rounded-xl transition text-sm">Criar Módulo</button>
+                        </form>
+                    </div>
+
+                    <!-- Cadastrar Aula -->
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-slate-900 mb-4">Cadastrar Nova Aula</h4>
+                        <form onsubmit="createLesson(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Módulo Associado</label>
+                                <select id="lesson-mod-id" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none"></select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Nome da Aula</label>
+                                <input type="text" id="lesson-title" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Descrição</label>
+                                <input type="text" id="lesson-desc" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">URL (YouTube ou Google Drive)</label>
+                                <input type="text" id="lesson-url" required placeholder="https://www.youtube.com/watch?v=..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                            </div>
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2.5 rounded-xl transition text-sm">Cadastrar Aula</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-lg text-slate-900 mb-4">Módulos e Aulas Existentes</h4>
+                    <div id="admin-modules-list" class="space-y-4"></div>
+                </div>
+            </div>
+
+            <!-- TAB 3: Materiais -->
+            <div id="adm-content-materials" class="admin-tab-content hidden space-y-6">
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 max-w-xl">
+                    <h4 class="font-bold text-lg text-slate-900 mb-4">Adicionar Material em PDF</h4>
+                    <form onsubmit="createMaterial(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Módulo</label>
+                            <select id="mat-mod-id" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none"></select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Nome do Material</label>
+                            <input type="text" id="mat-title" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">URL do PDF</label>
+                            <input type="text" id="mat-url" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                        </div>
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2.5 rounded-xl transition text-sm">Adicionar Material</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- TAB 4: Exercícios e Submissões -->
+            <div id="adm-content-exercises" class="admin-tab-content hidden space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-slate-900 mb-4">Criar Exercício para Módulo</h4>
+                        <form onsubmit="createExercise(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Módulo</label>
+                                <select id="ex-mod-id" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none"></select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Nome do Exercício</label>
+                                <input type="text" id="ex-title" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Descrição / Enunciado</label>
+                                <textarea id="ex-desc" rows="3" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none"></textarea>
+                            </div>
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2.5 rounded-xl transition text-sm">Cadastrar Exercício</button>
+                        </form>
+                    </div>
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-lg text-slate-900 mb-4">Avaliar Submissões dos Alunos</h4>
+                        <div id="admin-submissions-list" class="space-y-3 max-h-96 overflow-y-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Script SPA Frontend -->
+    <script>
+        let isRegisterMode = false;
+        let currentUser = null;
+        let appData = { modules: [], progress: [], submissions: [], students: [] };
+        let currentLesson = null;
+        let token = localStorage.getItem('token');
+
+        function goToSection(sectionId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function toggleAuthMode() {
+            isRegisterMode = !isRegisterMode;
+            document.getElementById('name-field').classList.toggle('hidden', !isRegisterMode);
+            document.getElementById('auth-title').innerText = isRegisterMode ? 'Criar Nova Conta' : 'Bem-vindo de volta';
+            document.getElementById('auth-btn').innerText = isRegisterMode ? 'Cadastrar' : 'Entrar';
+            document.getElementById('auth-toggle-btn').innerText = isRegisterMode ? 'Já tem uma conta? Entre' : 'Não tem uma conta? Cadastre-se';
+            document.getElementById('auth-error').classList.add('hidden');
+        }
+
+        async function handleAuth(event) {
+            event.preventDefault();
+            const email = document.getElementById('input-email').value;
+            const password = document.getElementById('input-password').value;
+            const name = document.getElementById('input-name').value;
+            const endpoint = isRegisterMode ? '/api/auth/register' : '/api/auth/login';
+
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, name })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Erro na autenticação');
+
+                token = data.token;
+                localStorage.setItem('token', token);
+                currentUser = data.user;
+                evaluateUserRoleAndNavigate();
+            } catch (err) {
+                const errBox = document.getElementById('auth-error');
+                errBox.innerText = err.message;
+                errBox.classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            token = null;
+            currentUser = null;
+            goToSection('sec-landing');
+        }
+
+        async function checkSession() {
+            if (!token) return;
+            try {
+                const res = await fetch('/api/auth/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!res.ok) throw new Error();
+                currentUser = await res.json();
+                evaluateUserRoleAndNavigate();
+            } catch (e) {
+                logout();
+            }
+        }
+
+        function evaluateUserRoleAndNavigate() {
+            if (!currentUser) return;
+            if (currentUser.role === 'admin') {
+                goToSection('sec-admin');
+                loadAdminData();
+            } else {
+                goToSection('sec-user');
+                loadStudentData();
+            }
+        }
+
+        // --- ALUNO LOGICA ---
+        async function loadStudentData() {
+            try {
+                const res = await fetch('/api/content', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                appData = await res.json();
+                currentUser = appData.user;
+
+                // Header info
+                document.getElementById('user-display-name').innerText = currentUser.name;
+                document.getElementById('user-avatar-initials').innerText = currentUser.name.charAt(0).toUpperCase();
+                document.getElementById('user-badge-status').innerText = currentUser.inscribed ? 'Aluno Inscrito' : 'Acesso Limitado';
+                document.getElementById('enrollment-alert').classList.toggle('hidden', currentUser.inscribed);
+
+                renderStudentModules();
+                renderStudentMaterials();
+                renderStudentExercises();
+                updateProgress();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function openWhatsAppEnroll() {
+            const msg = encodeURIComponent(`Olá! Quero fazer a inscrição na plataforma de desenvolvimento web. Meu email é: ${currentUser.email}`);
+            window.open(`https://wa.me/258879181555?text=${msg}`, '_blank');
+        }
+
+        function switchStudentTab(tab) {
+            ['modules', 'materials', 'exercises'].forEach(t => {
+                document.getElementById(`student-tab-${t}`).classList.toggle('hidden', t !== tab);
+                document.getElementById(`tab-btn-${t}`).className = t === tab 
+                    ? 'font-semibold text-indigo-600 pb-1 border-b-2 border-indigo-600' 
+                    : 'font-semibold text-slate-400 hover:text-slate-600 pb-1';
+            });
+        }
+
+        function renderStudentModules() {
+            const container = document.getElementById('student-modules-list');
+            container.innerHTML = '';
+
+            appData.modules.forEach((mod, modIdx) => {
+                const lessons = mod.Lessons || [];
+                // Se não está inscrito, restringe até 3 aulas no máximo do primeiro módulo
+                const isRestricted = !currentUser.inscribed;
+
+                const modDiv = document.createElement('div');
+                modDiv.className = 'border border-slate-200 rounded-2xl p-4 bg-slate-50/50';
+                
+                let lessonsHtml = '';
+                lessons.forEach((lesson, lIdx) => {
+                    const globalLessonIndex = (modIdx * 100) + lIdx;
+                    const isLocked = isRestricted && (modIdx > 0 || lIdx >= 3);
+                    const isCompleted = appData.progress.some(p => p.LessonId === lesson.id && p.completed);
+
+                    lessonsHtml += `
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-100 mb-2">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center ${isCompleted ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-500'}">
+                                    <i class="${isCompleted ? 'ri-check-line' : 'ri-play-mini-fill'}"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-sm text-slate-900">${lesson.title}</h5>
+                                    <span class="text-xs text-slate-400">${lesson.description || ''}</span>
+                                </div>
+                            </div>
+                            <div>
+                                ${isLocked ? '<span class="text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg font-medium"><i class="ri-lock-line"></i> Bloqueado</span>' : `
+                                    <button onclick='selectLesson(${JSON.stringify(lesson)})' class="bg-indigo-50 hover:bg-indigo-600 hover:text-white text-indigo-600 px-3 py-1.5 rounded-xl text-xs font-semibold transition">
+                                        Assistir
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                modDiv.innerHTML = `
+                    <div class="mb-3">
+                        <h4 class="font-bold text-slate-900">${mod.title}</h4>
+                        <p class="text-xs text-slate-500">${mod.description || ''}</p>
+                    </div>
+                    <div class="space-y-1">${lessonsHtml || '<p class="text-xs text-slate-400">Nenhuma aula cadastrada neste módulo.</p>'}</div>
+                `;
+                container.appendChild(modDiv);
+            });
+        }
+
+        function selectLesson(lesson) {
+            currentLesson = lesson;
+            const titleEl = document.getElementById('current-lesson-title');
+            const descEl = document.getElementById('current-lesson-desc');
+            const container = document.getElementById('video-container');
+            const btnComplete = document.getElementById('btn-complete-lesson');
+
+            titleEl.innerText = lesson.title;
+            descEl.innerText = lesson.description || '';
+            btnComplete.classList.remove('hidden');
+
+            const isCompleted = appData.progress.some(p => p.LessonId === lesson.id && p.completed);
+            document.getElementById('complete-btn-text').innerText = isCompleted ? 'Concluída' : 'Marcar como Concluída';
+
+            // Converter URL do YouTube ou Drive para embed se necessário
+            let embedUrl = lesson.url;
+            if (embedUrl.includes('youtube.com/watch?v=')) {
+                embedUrl = embedUrl.replace('watch?v=', 'embed/');
+            } else if (embedUrl.includes('youtu.be/')) {
+                embedUrl = embedUrl.replace('youtu.be/', 'www.youtube.com/embed/');
+            }
+
+            container.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>`;
+        }
+
+        async function toggleLessonComplete() {
+            if (!currentLesson) return;
+            const existing = appData.progress.find(p => p.LessonId === currentLesson.id);
+            const newState = existing ? !existing.completed : true;
+
+            const res = await fetch('/api/student/progress', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ LessonId: currentLesson.id, completed: newState })
+            });
+            if (res.ok) {
+                const updatedProg = await res.json();
+                if (existing) { existing.completed = updatedProg.completed; } else { appData.progress.push(updatedProg); }
+                document.getElementById('complete-btn-text').innerText = updatedProg.completed ? 'Concluída' : 'Marcar como Concluída';
+                renderStudentModules();
+                updateProgress();
+            }
+        }
+
+        function playNextLesson() {
+            // Achar próxima aula da lista geral
+            let allLessons = [];
+            appData.modules.forEach(m => { if(m.Lessons) allLessons.push(...m.Lessons); });
+            if (allLessons.length === 0) return;
+            const currentIndex = allLessons.findIndex(l => currentLesson && l.id === currentLesson.id);
+            const next = allLessons[currentIndex + 1] || allLessons[0];
+            selectLesson(next);
+        }
+
+        function updateProgress() {
+            let totalLessons = 0;
+            appData.modules.forEach(m => { if(m.Lessons) totalLessons += m.Lessons.length; });
+            const completedCount = appData.progress.filter(p => p.completed).length;
+            const pct = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
+
+            document.getElementById('progress-bar-fill').style.width = `${pct}%`;
+            document.getElementById('progress-text').innerText = `${pct}% concluído (${completedCount}/${totalLessons} aulas)`;
+        }
+
+        function renderStudentMaterials() {
+            const container = document.getElementById('student-materials-list');
+            container.innerHTML = '';
+            appData.modules.forEach(mod => {
+                const mats = mod.Materials || [];
+                mats.forEach(mat => {
+                    const isRestricted = !currentUser.inscribed && mod.id !== appData.modules[0]?.id;
+                    container.innerHTML += `
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-100">
+                            <div class="flex items-center space-x-3">
+                                <i class="ri-file-pdf-line text-2xl text-red-500"></i>
+                                <div>
+                                    <h5 class="font-medium text-sm text-slate-900">${mat.title}</h5>
+                                    <span class="text-xs text-slate-400">Módulo: ${mod.title}</span>
+                                </div>
+                            </div>
+                            <div>
+                                ${isRestricted ? '<span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-lg">Bloqueado</span>' : `
+                                    <a href="${mat.url}" target="_blank" class="bg-indigo-50 hover:bg-indigo-600 hover:text-white text-indigo-600 px-3 py-1.5 rounded-xl text-xs font-semibold transition">
+                                        Baixar PDF
+                                    </a>
+                                `}
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        function renderStudentExercises() {
+            const container = document.getElementById('student-exercises-list');
+            container.innerHTML = '';
+            appData.modules.forEach(mod => {
+                const exs = mod.Exercises || [];
+                exs.forEach(ex => {
+                    const sub = appData.submissions.find(s => s.ExerciseId === ex.id);
+                    container.innerHTML += `
+                        <div class="p-4 rounded-2xl bg-white border border-slate-100 space-y-3">
+                            <h5 class="font-bold text-slate-900 text-sm">${ex.title}</h5>
+                            <p class="text-xs text-slate-600">${ex.description}</p>
+                            ${sub ? `
+                                <div class="bg-slate-50 p-3 rounded-xl text-xs space-y-1">
+                                    <p><strong>Sua resposta:</strong> ${sub.answerText}</p>
+                                    <p><strong>Resultado do Formador:</strong> <span class="font-semibold text-indigo-600">${sub.result}</span></p>
+                                </div>
+                            ` : `
+                                <form onsubmit="submitExercise(event, ${ex.id})" class="space-y-2">
+                                    <textarea placeholder="Digite sua resposta aqui..." required class="w-full p-3 text-xs rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-600 focus:outline-none"></textarea>
+                                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-xs font-semibold">Enviar Resposta</button>
+                                </form>
+                            `}
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        async function submitExercise(event, exerciseId) {
+            event.preventDefault();
+            const textarea = event.target.querySelector('textarea');
+            const answerText = textarea.value;
+
+            const res = await fetch('/api/student/submit-exercise', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ ExerciseId: exerciseId, answerText })
+            });
+            if (res.ok) {
+                loadStudentData();
+            }
+        }
+
+        // --- ADMIN LOGICA ---
+        async function loadAdminData() {
+            try {
+                const res = await fetch('/api/content', { headers: { 'Authorization': `Bearer ${token}` } });
+                appData = await res.json();
+
+                const studRes = await fetch('/api/admin/students', { headers: { 'Authorization': `Bearer ${token}` } });
+                appData.students = await studRes.json();
+
+                populateSelects();
+                renderAdminModules();
+                renderAdminStudents();
+                renderAdminSubmissions();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function switchAdminTab(tab) {
+            ['students', 'modules', 'materials', 'exercises'].forEach(t => {
+                document.getElementById(`adm-content-${t}`).classList.toggle('hidden', t !== tab);
+                document.getElementById(`adm-tab-${t}`).className = t === tab 
+                    ? 'px-5 py-2.5 rounded-xl font-semibold text-sm bg-indigo-600 text-white transition' 
+                    : 'px-5 py-2.5 rounded-xl font-semibold text-sm bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+            });
+        }
+
+        function populateSelects() {
+            const modOpts = appData.modules.map(m => `<option value="${m.id}">${m.title}</option>`).join('');
+            ['lesson-mod-id', 'mat-mod-id', 'ex-mod-id'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerHTML = modOpts;
+            });
+        }
+
+        async function createModule(e) {
+            e.preventDefault();
+            const title = document.getElementById('mod-title').value;
+            const description = document.getElementById('mod-desc').value;
+            await fetch('/api/admin/modules', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ title, description })
+            });
+            document.getElementById('mod-title').value = '';
+            document.getElementById('mod-desc').value = '';
+            loadAdminData();
+        }
+
+        async function createLesson(e) {
+            e.preventDefault();
+            const ModuleId = document.getElementById('lesson-mod-id').value;
+            const title = document.getElementById('lesson-title').value;
+            const description = document.getElementById('lesson-desc').value;
+            const url = document.getElementById('lesson-url').value;
+
+            await fetch('/api/admin/lessons', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ ModuleId, title, description, url })
+            });
+            document.getElementById('lesson-title').value = '';
+            document.getElementById('lesson-desc').value = '';
+            document.getElementById('lesson-url').value = '';
+            loadAdminData();
+        }
+
+        async function createMaterial(e) {
+            e.preventDefault();
+            const ModuleId = document.getElementById('mat-mod-id').value;
+            const title = document.getElementById('mat-title').value;
+            const url = document.getElementById('mat-url').value;
+
+            await fetch('/api/admin/materials', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ ModuleId, title, url })
+            });
+            document.getElementById('mat-title').value = '';
+            document.getElementById('mat-url').value = '';
+            loadAdminData();
+        }
+
+        async function createExercise(e) {
+            e.preventDefault();
+            const ModuleId = document.getElementById('ex-mod-id').value;
+            const title = document.getElementById('ex-title').value;
+            const description = document.getElementById('ex-desc').value;
+
+            await fetch('/api/admin/exercises', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ ModuleId, title, description })
+            });
+            document.getElementById('ex-title').value = '';
+            document.getElementById('ex-desc').value = '';
+            loadAdminData();
+        }
+
+        async function deleteModule(id) {
+            if (!confirm('Deseja excluir este módulo?')) return;
+            await fetch(`/api/admin/modules/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+            loadAdminData();
+        }
+
+        async function deleteLesson(id) {
+            if (!confirm('Deseja excluir esta aula?')) return;
+            await fetch(`/api/admin/lessons/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+            loadAdminData();
+        }
+
+        function renderAdminModules() {
+            const container = document.getElementById('admin-modules-list');
+            container.innerHTML = '';
+            appData.modules.forEach(mod => {
+                let lessonsHtml = (mod.Lessons || []).map(l => `
+                    <div class="flex justify-between items-center bg-slate-50 p-2.5 rounded-xl text-xs mb-1">
+                        <span>${l.title}</span>
+                        <button onclick="deleteLesson(${l.id})" class="text-red-500 hover:text-red-700 font-medium">Excluir</button>
+                    </div>
+                `).join('');
+
+                container.innerHTML += `
+                    <div class="border border-slate-200 rounded-2xl p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <h5 class="font-bold text-slate-900">${mod.title}</h5>
+                            <button onclick="deleteModule(${mod.id})" class="text-red-500 hover:text-red-700 text-xs font-semibold">Excluir Módulo</button>
+                        </div>
+                        <div class="space-y-1">${lessonsHtml || '<p class="text-xs text-slate-400">Sem aulas.</p>'}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderAdminStudents() {
+            const container = document.getElementById('admin-students-list');
+            container.innerHTML = '';
+            appData.students.forEach(student => {
+                container.innerHTML += `
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-2xl bg-slate-50 border border-slate-200 gap-4">
+                        <div>
+                            <h5 class="font-bold text-slate-900">${student.name}</h5>
+                            <p class="text-xs text-slate-500">${student.email}</p>
+                            <p class="text-xs text-indigo-600 mt-1">Status: ${student.inscribed ? 'Inscrito' : 'Não Inscrito'}</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button onclick="toggleStudentEnrollment(${student.id}, ${!student.inscribed})" class="px-4 py-2 rounded-xl text-xs font-semibold transition ${student.inscribed ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' : 'bg-emerald-600 text-white hover:bg-emerald-700'}">
+                                ${student.inscribed ? 'Bloquear / Marcar Não Inscrito' : 'Aprovar / Marcar Inscrito'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        async function toggleStudentEnrollment(studentId, inscribed) {
+            await fetch(`/api/admin/students/${studentId}/status`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ inscribed })
+            });
+            loadAdminData();
+        }
+
+        function renderAdminSubmissions() {
+            const container = document.getElementById('admin-submissions-list');
+            container.innerHTML = '';
+            // Buscar todas submissões de todos os estudantes
+            let allSubs = [];
+            appData.students.forEach(s => {
+                if (s.Submissions) {
+                    s.Submissions.forEach(sub => {
+                        allSubs.push({ ...sub, studentName: s.name });
+                    });
+                }
+            });
+
+            if (allSubs.length === 0) {
+                container.innerHTML = '<p class="text-xs text-slate-400 text-center py-4">Nenhuma submissão enviada ainda.</p>';
+                return;
+            }
+
+            allSubs.forEach(sub => {
+                container.innerHTML += `
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
+                        <div class="flex justify-between font-semibold text-slate-800">
+                            <span>${sub.studentName}</span>
+                            <span class="text-indigo-600">${sub.result}</span>
+                        </div>
+                        <p class="text-slate-600">Resposta: ${sub.answerText}</p>
+                        <div class="flex space-x-2 pt-1">
+                            <button onclick="updateSubmissionResult(${sub.id}, 'Ruim')" class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg font-medium">Ruim</button>
+                            <button onclick="updateSubmissionResult(${sub.id}, 'Normal')" class="bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg font-medium">Normal</button>
+                            <button onclick="updateSubmissionResult(${sub.id}, 'Excelente')" class="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-lg font-medium">Excelente</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        async function updateSubmissionResult(subId, result) {
+            await fetch(`/api/admin/submissions/${subId}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ result })
+            });
+            loadAdminData();
+        }
+
+        // Inicializar verificação de sessão ao carregar a página
+        window.onload = () => {
+            checkSession();
+        };
+    </script>
+</body>
+</html>
