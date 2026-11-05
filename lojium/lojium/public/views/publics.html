@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
+    <script src="https://unpkg.com/izitoast/dist/js/iziToast.min.js"></script>
+    <link rel="shortcut icon" href="https://i.ibb.co/gbYmcVFz/logo.jpg" type="image/jpg">
+
+    <!-- DINAMIC OG -->
+    <meta property="og:title" content="{{ogTitle}}">
+    <meta property="og:description" content="{{ogDescription}}">
+    <meta property="og:image" content="{{ogImage}}">
+    <meta property="og:url" content="{{ogUrl}}">
+    <meta property="og:type" content="website">    
+    
+    <title>{{title}}</title>
+</head>
+<body data-res="{{path}}" id="body_path">
+    <section id="lojium_public" style="display: none;">
+        <div id="public_ladingpage">
+            <div class="landpage_hero"><header class="landpage_head">
+                <div class="logo"><i class="ri-bubble-chart-fill"></i> Lojium</div><a href="authentication">Entrar <i class="ri-arrow-right-up-line"></i></a></header>
+                <div class="landpage_content">
+                    <h1>Simplifique suas vendas.<br>Escale seu negócio</h1>
+                    <p>Solução completa para gestão e venda online. Crie sua loja digital, controle seu catálogo e centralize todos os pedidos no WhatsApp. Começe gratuitamente</p>
+                    <div class="landpage_cta">
+                    <input type="url" class="input_text" value="www.marketplace.lojium.shop" readonly>
+                    <a href="authentication">Acessar a plataforma</a></div>
+                </div>
+            </div><div class="landpage_footer">&copy; 2026 Lojium empreendimentos. Todos direitos reservados <br> Serviço oferecido por Abdul faquir</div>
+        </div>
+
+        <div id="public_authentication" style="display: none;">
+            <div id="authentication_signin" class="authentication">
+                <div class="auth_section">
+                    <div><div class="logo"><i class="ri-bubble-chart-fill"></i> Lojium</div> <br><h3>LOGIN</h3></div>
+                    <input type="email" id="luse_email" placeholder="INFORME SEU EMAIL">
+                    <input type="password" id="luse_pass"  placeholder="INFORME SUA SENHA">
+                    <input id="btn_in" onclick="auth_checkusers()" type="submit" class="lojium_btn" value="Acessar a plataforma">
+                    <p>Não tem uma conta? <span id="btn_sigup" onclick="authNav('authentication_signup')">Crie a sua já!</span></p>
+                    <p onclick="authNav('authentication_rstpassemail')"><span id="btn_sigup">Esqueci minha senha</span></p>
+                </div>
+            </div>
+
+            <div id="authentication_signup" class="authentication" style="display: none;">
+                <div class="auth_section">
+                    <div><div class="logo"><i class="ri-bubble-chart-fill"></i> Lojium</div><br><h3>CADASTRO</h3></div>
+                    <input type="text" id="store_name" placeholder="INFORME NOME DA SUA LOJA" maxlength="40">
+                    <input type="url" id="store_slug" placeholder="INFORME A SLUG EX: 'meu-negocio'">
+                    <center><h4>PROPRIETÁRIO</h4></center><input type="text" id="use_name" placeholder="SEU NOME COMPLETO">
+                    <input type="email" id="use_email" placeholder="SEU EMAIL ACTIVO">
+                    <input type="password" id="use_pass" placeholder="INSERE SUA SENHA MIN 6 DIGITOS"><input type="submit" id="btn_up" onclick="auth_addusers()" class="lojium_btn" value="Verificar a Disponibilidade">
+                    <p>Já tem conta? <span id="btn_sigin" onclick="authNav('authentication_signin')">Faça login!</span></p>
+                </div>
+            </div>
+
+            <div id="authentication_rstpassemail" class="authentication" style="display: none;">
+                <div class="auth_section">
+                    <div><div class="logo"><i class="ri-bubble-chart-fill"></i> Lojium</div><br><h3>RECUPERAR CONTA</h3></div>
+                    <input type="email" placeholder="INSERE O SEU EMAIL">
+                    <input type="submit" value="Receber email de recuperação" class="lojium_btn" onclick="bubble('warn', 'Este recurso esta indisponivel no momento!')">
+                    <p>Lembrou da senha? <span id="btn_sigin" onclick="authNav('authentication_signin')">Faça login!</span></p>
+                </div>
+            </div>
+
+            <div id="authentication_rstpass" class="authentication" style="display: none;">
+                <div class="auth_section">
+                    <div><div class="logo"><i class="ri-bubble-chart-fill"></i> Lojium</div><br><h3>INSERIR NOVA SENHA</h3></div>
+                    <input type="password" placeholder="INSERE A NOVA SENHA">
+                    <input type="password" placeholder="REPITA A NOVAMENTE">
+                    <input type="submit" value="Alterar palavra passe" class="lojium_btn">
+                    <p><strong>Serviço 100% seguro</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="public_politica" style="display: none;">
+            <!-- POLITICA DE PRIVACIDADE --> POLITICA
+        </div>
+    </section>
+</body>
+</html>

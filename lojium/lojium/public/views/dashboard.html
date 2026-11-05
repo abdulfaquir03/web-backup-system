@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/izitoast/dist/css/iziToast.min.css">
+    <script src="https://unpkg.com/izitoast/dist/js/iziToast.min.js"></script>
+    <link rel="shortcut icon" href="https://i.ibb.co/gbYmcVFz/logo.jpg" type="image/jpg">
+
+    <!-- DINAMIC OG -->
+    <meta property="og:title" content="{{ogTitle}}">
+    <meta property="og:description" content="{{ogDescription}}">
+    <meta property="og:image" content="{{ogImage}}">
+    <meta property="og:url" content="{{ogUrl}}">
+    <meta property="og:type" content="website">    
+    
+    <title>{{title}}</title>
+</head>
+<body data-res="{{path}}" id="body_path">
+    <section id="lojium_dashboard" style="display: none;">
+        <div id="dashboard_use" class="dashboard" style="display: none;">
+            <div class="dashboard_home"><div class="dashboard_home_top"><h2><i class="ri-bubble-chart-fill"></i> Lojium</h2><div><i onclick="dashboard_popup('dashboard_popup_use', 'open')" class="ri-user-line"></i></div></div><div class="dashboard_home_desc"><h2>Olá! <span>...</span></h2><p>Simplifique suas vendas. Escale <br>seu negócio</p></div>
+                
+                <div class="dashboard_home_cards">
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_hist', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-bank-card-line"></i></div><i class="ri-arrow-right-line icon-arrow"></i></div><div class="home_cards_body"><h2 class="cards_body_value green" id="dash_userdaterender_unprocessedbalance">... MT</h2><p class="home_cards_title">HIST. TRANSAÇÕES</p><p class="home_cards_sub">Saldo aguardando a trasferencia.</p></div></div>    
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_ecomerce', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-shopping-basket-2-line"></i></div><i class="ri-arrow-right-line icon-arrow"></i></div><div class="home_cards_body"><h2 class="cards_body_value"><span id="render_order_cont">...</span> <span class="smmall_text">VENDAS</span></h2><p class="home_cards_title">ECOMMERCE</p><p class="home_cards_sub">Adicione produtos e veja suas vendas.</p></div></div>
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_links', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-store-2-line"></i></div><i class="ri-arrow-right-line icon-arrow"></i></div><div class="home_cards_body"><h2 class="cards_body_value" ><span id="render_views_cont">...</span> <span class="smmall_text">VIEWS</span></h2><p class="home_cards_title">MINHA LOJA</p><p class="home_cards_sub">Configurações da minha loja.</p></div></div>
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_trial', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-fire-line"></i></div><i class="ri-arrow-right-line icon-arrow" id="unrender_arrow_fortype"></i></div><div class="home_cards_body"><h2 class="cards_body_value"><span id="render_type_contxtt">0</span> <span  class="smmall_text">ACTIVAS</span></h2><p class="home_cards_title" id="render_type_coninfo">MARKETPLACE</p><p class="home_cards_sub">Anuncie no marketplace da lojium.</p></div></div> 
+                </div>
+            </div>
+
+            <div id="dashboard_home_bodypoppups">
+                <div id="dashboard_popup_use" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_use', 'close')" class="dashboard_popup_drag"></div></div><div class="popup_info_user popup_info"><div><p><span id="popup_info_user_name">...</span> <span id="popup_info_user_email">...</span></p></div></div>
+                    <div class="dashboard_popup_body"><div class="popup_info_user_desh"><div><p>Status do perfil: <br> <span id="popup_info_user_stats">...</span></p></div><div><p>Membro desde: <br> <span id="popup_info_user_data">-/-/-</span></p></div></div>
+                        <div class="info_user_addnumpayment"><h3><span id="render_dayrest">...</span> DIAS RESTANTES NO PLANO</h3> <p>Planos de mensalidade da lojium</p>
+
+                        </div>
+                        <div class="info_user_addnumpayment"><h3>INFORME O NÚMERO DE LEVANTAMENTO</h3> <p>Número pela qual os saques serão processados automaticamente a cada transação</p>
+                            <div><input type="tel" placeholder="84 000 0000" id="info_user_addnumpayment" maxlength="9" pattern="^(84|85)[0-9]{7}$" required> <input id="btn-save-numberpay" onclick="info_user_addnumpayment()" type="submit" value="Salvar as alterações"></div>
+                        </div>
+                        <div class="wa-modal-card"><div class="wa-modal-icon"><i class="ri-whatsapp-line"></i></div><h3>Grupo de membros no WhatsApp</h3> <p>Junte-se à lojium no whatsapp para receber atualizações, novidades e suporte direto!</p><a href="https://chat.whatsapp.com/F5Txh63dEK195zwL7k4wPj?s=cl&p=a&ilr=0&amv=2" target="_blank" rel="noopener noreferrer" class="wa-modal-btn"> <i class="ri-whatsapp-fill"></i> Entrar no Grupo</a></div> 
+                    </div><div class="dashboard_popup_footer"><div onclick="logout()"><i class="ri-logout-circle-r-line"></i> Sair</div><div class="dashboard_popup_footer_close" onclick="dashboard_popup('dashboard_popup_use', 'close')">Fechar </div></div>
+                </div></div>
+ 
+                <div id="dashboard_popup_hist" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_hist', 'close')" class="dashboard_popup_drag"></div></div>
+                    <div class="popup_tab_header"><div><p>A CADA VENDA O LEVANTAMENTO É AUTOMATICO.</p><h3>HISTORICO DE TRANSAÇÕES</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_hist', 'close')"></i></div>
+                    <div class="dashboard_popup_body">
+                        <div class="mini_section_page" id="hist_user_checksales">
+                            <div class="ls-alert-container">
+  <div class="ls-alert-card" onclick="window.open('https://wa.me/2588735203333?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20servi%C3%A7o%20n%C3%A3o%20dispon%C3%ADvel%20na%20minha%20conta.', '_blank')">
+    <div class="ls-alert-content">
+      <h3 class="ls-alert-title">Serviço Indisponível</h3>
+      <p class="ls-alert-info">Este serviço não está disponível para a sua conta.</p>
+    </div>
+    <span class="ls-alert-cta">Saiba mais com o suporte... ➔</span>
+  </div>
+</div>
+                        </div>
+                    </div><div class="dashboard_popup_footer"><div onclick="bubble('warn','Funcionalidade não disponivel no momento')">Todas tran.</div><div class="dashboard_popup_footer_close" onclick="bubble('warn','Funcionalidade não disponivel no momento')">Não confirmadas</div></div>
+                </div></div>
+
+                <div id="dashboard_popup_ecomerce" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_ecomerce', 'close')" class="dashboard_popup_drag"></i></div></div>
+                    <div class="popup_tab_header"><div><p>ACOMPANHE PEDIDOS E PRODUTOS.</p><h3>GESTÃO DO ECOMMERCE</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_ecomerce', 'close')"></i></div>
+                    <div class="popup_body_control_ecomerce">
+                        <button class="active" onclick="history_nav('ecomerce_order', this)">VENDAS</button> 
+                        <button onclick="history_nav('ecomerce_proctuts', this)">PRODUTOS</button>
+                    </div>
+                    <div class="dashboard_popup_body">
+                        <div>
+                            <div id="ecomerce_order">
+                                <div id="render_order_grids"></div>
+                            </div>
+                            <div id="ecomerce_proctuts" style="display: none;"><div id="render_proctuts_rows"></div></div>
+                            <div id="ecomerce_addproducts" style="display: none;"> <br>
+                                <div id="product_form_container" class="prod_form_card"> <input type="hidden" id="prod_id_input" value="">
+                                    <h3 id="prod_form_title">CADASTRAR PRODUTO</h3> <input type="text" id="prod_name" placeholder="Nome do produto" required>
+                                    <input type="number" id="prod_price" placeholder="Preço MZn" required> <textarea id="prod_desc" maxlength="120" placeholder="Descrição (Máx 120 caracteres)"></textarea>
+                                    <div class="img_upload_group">
+                                        <div class="img_input_box" onclick="document.getElementById('img_file_0').click()"><input type="file" id="img_file_0" accept="image/*" onchange="previewImg(this, 0)" hidden><img id="img_prev_0" hidden><i id="img_icon_0" class="ri-add-line"></i></div>
+                                        <div class="img_input_box" onclick="document.getElementById('img_file_1').click()"><input type="file" id="img_file_1" accept="image/*" onchange="previewImg(this, 1)" hidden><img id="img_prev_1" hidden><i id="img_icon_1" class="ri-add-line"></i></div>
+                                        <div class="img_input_box" onclick="document.getElementById('img_file_2').click()"><input type="file" id="img_file_2" accept="image/*" onchange="previewImg(this, 2)" hidden><img id="img_prev_2" hidden><i id="img_icon_2" class="ri-add-line"></i></div>
+                                    </div>
+                                    <button type="button" id="btn_save_prod" onclick="saveProduct()">Salvar Produto</button>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div><div class="dashboard_popup_footer"><div onclick="history_nav('ecomerce_addproducts')">Adicionar produto</div> <div class="dashboard_popup_footer_close" onclick="dashboard_popup('dashboard_popup_ecomerce', 'close')">Fechar</div></div>
+                </div></div>
+
+                <div id="dashboard_popup_links" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_links', 'close')" class="dashboard_popup_drag"></div></div>
+                    <div class="popup_tab_header"><div><p>TUDO QUE PRECISA PARA VENDER ONLINE.</p><h3>EDIÇÃO E CONFIGURAÇÃO</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_links', 'close')"></i></div>
+                    <div class="dashboard_popup_body">
+                        <div id="container_render_formstore" class="container_render_formstore">
+                            <div class="render_formstore_infostore"><h4>INFORMAÇÕES DA LOJA</h4> <div class="render_formstore_infopri">
+                                <div><label for="#">Nome:</label> <input type="text" id="mystore_nameinsert" placeholder="NOME DA LOJA" maxlength="40"></div>
+                                <div><label for="#">WhatsApp:</label> <input id="mystore_whatappinsert" type="tel" placeholder="87 000 0000" maxlength="9"></div>
+                                </div><div class="render_formstore_textarea"> <textarea id="mystore_descinsert" placeholder="DESCRIÇÃO CURTA DO SEU NEGOCIO..." maxlength="120"></textarea></div>
+                            </div><div class="render_formstore_infoslug"><h5>LINK DA SUA LOJA</h5><div><span>www.lojium.shop/</span><input id="mystore_sluginsert" type="url" readonly></div></div><button class="lojium_btn" onclick="updateinfostore()">Salvar as alterações</button>
+                    </div></div>
+                    <div class="dashboard_popup_footer"><div onclick="dashboard_popup('dashboard_popup_links', 'close')">Fechar</div>  <div class="dashboard_popup_footer_close" onclick="copy_linkecommerce()"><i class="ri-file-copy-line"></i> Copiar o link</div></div>
+                </div></div>
+
+                <div id="dashboard_popup_trial" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_trial', 'close')" class="dashboard_popup_drag"></div></div>
+                    <div class="popup_tab_header"><div><p>ANUNCIE NO MARKETPLACE DA LOJIUM.</p><h3>CRIE CAMPANHAS DE ANÚNCIOS</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_trial', 'close')"></i></div>
+                    <div class="dashboard_popup_body"></div> <div class="dashboard_popup_footer"><div onclick="alert('Crie campanhas de anuncios a partir de 90MT por dia e aumente suas vendas')">Ver plano</div><div class="dashboard_popup_footer_close" onclick="alert('Estamos trabalhando nisso!')">Pagar agora</div></div>
+                </div></div>
+            </div>
+        </div>
+
+        
+        <!-- ***************************************************************************************************************************** -->
+        <div id="dashboard_adm" class="dashboard" style="display: none;">
+            <div class="dashboard_home"><div class="dashboard_home_top"><h2><i class="ri-bubble-chart-fill"></i> Lojium</h2><div><i onclick="dashboard_popup('dashboard_popup_chat', 'open')" class="ri-chat-smile-ai-3-line" style="color: white;"></i></div></div><div class="dashboard_home_desc"><h2>Olá! <span>abdul</span></h2><p>Agora vamos fazer a gestão da<br>Lojium empreendimentos.</p></div>
+                
+                <div class="dashboard_home_cards">
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_admPayment', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-refund-line"></i></div><i class="ri-arrow-right-line icon-arrow"></i></div><div class="home_cards_body"><h2 class="cards_body_value green" id="valueAdmUnprocessedTotal">... MZN</h2><p class="home_cards_title">LOJIUM PAYMENT</p><p class="home_cards_sub">Faturamento pendente dos usuaarios.</p></div></div>    
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_admUsers', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-group-line"></i></div><i class="ri-arrow-right-line icon-arrow"></i></div><div class="home_cards_body"><h2 class="cards_body_value"><span id="valueAdmUserActives">...</span> <span class="smmall_text">ACTIVOS</span></h2><p class="home_cards_title">USUARIOS</p><p class="home_cards_sub">Gestão de utilizadores e clientes.</p></div></div>
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_admEcommerce', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-store-2-line"></i></div><i class="ri-arrow-right-line icon-arrow"></i></div><div class="home_cards_body"><h2 class="cards_body_value" ><span id="valueAdmActiveStores">...</span> <span class="smmall_text">ACTIVAS</span></h2><p class="home_cards_title">ECOMMERCE</p><p class="home_cards_sub">Visão geral dos ecomerces e vendas.</p></div></div>
+                    <div class="home_cards" onclick="dashboard_popup('dashboard_popup_admLojium', 'open')"><div class="home_cards_head"><div class="home_cards_icon"><i class="ri-bubble-chart-line"></i></div><i class="ri-arrow-right-line icon-arrow"></i></div><div class="home_cards_body"><h2 class="cards_body_value"><span class="smmall_text">LOJIUM</span></h2><p class="home_cards_title">FATURAMENTO</p><p class="home_cards_sub">Desempenho e faturamento da lojium.</p></div></div> 
+                </div>
+            </div>
+
+            <div>
+                <div id="dashboard_popup_chat" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_chat', 'close')" class="dashboard_popup_drag"></div></div>
+                    <div class="popup_tab_header"><div><p>MARKETING E COMUNICADOS DA LOJIUM.</p><h3>CAMPANHAS E MARKETING</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_chat', 'close')"></i></div>
+                    <div class="dashboard_popup_body">
+                        
+                        <div class="campaign-box"><input type="text" id="cmpTitle" placeholder="TÍTULO DA CAMPANHA" /><textarea id="cmpMsg" rows="6" placeholder="Escreva a mensagem da campanha..."></textarea><select id="cmpSender"><option value="">SELECIONE 0 SENDERID</option></select>
+                            <button type="button" onclick="openRecipientPopup()" class="lojium_btn">SELECIONAR DESTINATÁRIOS</button><div id="selectedMetrics" style="font-size:12px;margin:8px 0;color:#555;"></div><button type="button" onclick="sendCampaign()" style="background:#00D09E;color:#fff; width: 100%; border: none; border-radius: 30px; padding: 20px; font-weight: 800; cursor: pointer; margin: 10px 0;">Enviar Emails</button>
+                        </div>
+
+                        <div id="dragPopup" class="popup-drag"><div id="dragHeader" class="popup-header">:: SELECIONAR DESTINATÁRIOS</div><div id="popupList" class="popup-body"></div><button type="button" onclick="closeRecipientPopup()" style="width:100%;padding:6px;background:#000;color:#fff;border:none;border-radius:0 0 7px 7px;">FECHAR CAIXA DE SELECÇÃO</button></div> <br>
+
+                       <div class="sender-container"><input type="text" id="inputSenderId" placeholder="DIGITE O SENDER_ID" /><button type="button" onclick="registerSenderId()" class="lojium_btn">Registrar SenderID</button><div id="admSendersList"></div></div>
+                    </div><div class="dashboard_popup_footer"><div onclick="logout()"><i class="ri-logout-circle-r-line"></i> Sair</div><div class="dashboard_popup_footer_close" onclick="dashboard_popup('dashboard_popup_chat', 'close')">Fechar </div></div>
+                </div></div>
+
+
+                <div id="dashboard_popup_admPayment" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_admPayment', 'close')" class="dashboard_popup_drag"></i></div></div>
+                    <div class="popup_tab_header"><div><p>O LEVANTAMENTO É AUTOMATICO MAX 24H.</p><h3>HISTORICO DE TRANSAÇÕES</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_admPayment', 'close')"></i></div>
+                    <div class="dashboard_popup_body">
+
+                    </div><div class="dashboard_popup_footer"><div onclick="history_nav('ecomerce_addproducts')">Financeiro</div> <div class="dashboard_popup_footer_close" onclick="dashboard_popup('dashboard_popup_admPayment', 'close')">Fechar</div></div>
+                </div></div>
+
+                <div id="dashboard_popup_admUsers" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_admUsers', 'close')" class="dashboard_popup_drag"></i></div></div>
+                    <div class="popup_tab_header"><div><p>A INATIVIDADE RESULTA NA REMOÇÃO TOTAL.</p><h3>GESTÃO DOS COMERCIANTES</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_admUsers', 'close')"></i></div>
+                    <div class="dashboard_popup_body">
+                        <div class="table-container"><table class="custom-table"><thead> <tr><th>ID</th><th>NOME</th><th>E-MAIL</th><th>STATUS</th><th>EVENTOS</th></tr></thead><tbody id="usersTableBody"></tbody></table></div>
+            
+                    </div><div class="dashboard_popup_footer"><div onclick="filterExpiredUsers()">Expirados</div> <div class="dashboard_popup_footer_close" onclick="renderUsersTable(globalUsersData)">All</div></div>
+                </div></div>
+
+                <div id="dashboard_popup_admEcommerce" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_admEcommerce', 'close')" class="dashboard_popup_drag"></i></div></div>
+                    <div class="popup_tab_header"><div><p>A INATIVIDADE RESULTA NA REMOÇÃO TOTAL.</p><h3>GESTÃO DOS ECOMMERCES</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_admEcommerce', 'close')"></i></div>
+                    <div class="dashboard_popup_body">
+                        
+                    </div><div class="dashboard_popup_footer"><div onclick="history_nav('ecomerce_addproducts')">Ecommerce</div> <div class="dashboard_popup_footer_close" onclick="dashboard_popup('dashboard_popup_admEcommerce', 'close')">Fechar</div></div>
+                </div></div>
+
+                <div id="dashboard_popup_admLojium" class="dashboard_popup">
+                <div class="dashboard_popup_content"><div class="dashboard_popup_head"><div onclick="dashboard_popup('dashboard_popup_admLojium', 'close')" class="dashboard_popup_drag"></i></div></div>
+                    <div class="popup_tab_header"><div><p>A INATIVIDADE RESULTA NA REMOÇÃO TOTAL.</p><h3>FATURAMENTO GERAL DA LOJIUM</h3></div> <i class="ri-close-large-fill" onclick="dashboard_popup('dashboard_popup_admLojium', 'close')"></i></div>
+                    <div class="dashboard_popup_body">
+                        
+                    </div><div class="dashboard_popup_footer"><div onclick="history_nav('ecomerce_addproducts')">Faturamento</div> <div class="dashboard_popup_footer_close" onclick="dashboard_popup('dashboard_popup_admLojium', 'close')">Fechar</div></div>
+                </div></div>
+            </div>
+        </div>
+
+
+
+        <!-- ************************************************************************************************************************************************** -->
+        <div style="display: none;">
+            <h2>Funcionalios (Marketing, Suporte e Promotor)</h2>
+        </div>
+    </section>
+</body>
+</html>
