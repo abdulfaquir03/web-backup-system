@@ -1,0 +1,330 @@
+<!-- 
+    PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+    ******
+    DESENVOLVIDO POR: 
+    |Abdul faquir | Desenvolvedor web
+    |EMAIL: abdulfaquir03@gmail.com
+    |WHATSAPP: +258 879181555
+    |WEBSITE: https://lojium.vercel.app/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" type="image/jpg">
+    <title>{{title}}</title>
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="FINANÇAS - Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logótipo e estudantes da CM-CETROPROHC em Lichinga" />
+    <meta property="og:locale" content="pt_MZ" />
+    <meta property="og:site_name" content="CM-CETROPROHC, LTD" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta name="twitter:title" content="CM-CETROPROHC | Transformação Profissional" />
+    <meta name="twitter:description" content="Capacitação prática e consultoria de negócios em Niassa. Inscreva-se nos nossos cursos online e presenciais." />
+    <meta name="twitter:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <script>
+        (function checkSuperAdmin() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/portal';
+                return;
+            }
+            try {
+                const payloadBase64 = token.split('.')[1];
+                const decoded = JSON.parse(atob(payloadBase64));
+                const role = decoded.code || decoded.type || '';
+                if (role !== 'FIN') {
+                    window.location.href = '/portal';
+                }
+            } catch (e) {
+                localStorage.removeItem('token');
+                window.location.href = '/portal';
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="top-loader" class="top-loader"></div>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="app-container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <i class="ri-box-3-line"></i>
+                <span>CM CETROPROH</span>
+            </div>
+
+            <div class="menu-label">CM FINANÇAS</div>
+
+            <div class="nav-item active" onclick="navigate('dashboard', this)">
+                <i class="ri-dashboard-line"></i>
+                <span>Dashboard</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('verify', this)">
+                <i class="ri-verified-badge-line"></i>
+                <span>Aprovações</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('carteiras', this)">
+                <i class="ri-wallet-3-line"></i>
+                <span>Carteiras</span>
+            </div>
+
+            <!-- <div class="nav-item" onclick="navigate('mensagens', this)">
+                <i class="ri-mail-line"></i>
+                <span>Mensagens</span>
+            </div>
+
+           <div class="menu-label">Configurações</div>
+
+            <div class="nav-item" onclick="navigate('seguranca', this)">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Segurança</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('sistema', this)">
+                <i class="ri-settings-4-line"></i>
+                <span>Sistema</span>
+            </div> -->
+        </nav>
+
+
+
+
+
+        <div class="main-wrapper">
+            <header>
+                <div class="header-left">
+                    <button class="btn-hamburger" onclick="toggleSidebar()">
+                        <i class="ri-menu-line"></i>
+                    </button>
+                </div>
+
+                <div class="header-right">
+                    <button class="header-icon-btn"><i class="ri-search-line"></i></button>
+                    <button class="header-icon-btn"><i class="ri-notification-3-line"></i></button>
+                    <div class="profile-avatar">
+                        <i class="ri-user-line"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content">
+
+                <!-- SEÇÃO 1: DASHBOARD -->
+                <section id="page-dashboard" class="page-view">
+                    <div class="dashboard-cards">
+                        <div class="card-stat blue">
+                            <div class="lbl">Receita Projetada</div>
+                            <div class="val" id="stat-receita">0,00 MTn</div>
+                        </div>
+                        <div class="card-stat yellow">
+                            <div class="lbl">Total Cursos</div>
+                            <div class="val" id="stat-cursos">0</div>
+                        </div>
+                        <div class="card-stat red">
+                            <div class="lbl">Inscrições Pendentes</div>
+                            <div class="val" id="stat-pendentes">0</div>
+                        </div>
+                        <div class="card-stat green">
+                            <div class="lbl">Inscrições Ativas</div>
+                            <div class="val" id="stat-ativas">0</div>
+                        </div>
+                    </div>
+
+                </section>
+
+                
+
+                <!-- SEÇÃO 2: APROVAÇÕES -->
+                <section id="page-verify" class="page-view" style="display: none;">
+                    <div class="layout-grid">
+                        <div class="card" id="container-esquerdo">
+                            <div class="detail-section"> <h3>Aprovações</h3>
+                                <p style="color: #666;">Selecione um curso ou inscrição na lista ao lado para visualizar os detalhes ou gerenciar aprovações.</p>
+                            </div>
+                        </div>
+
+                        <div class="card" id="container-direito">
+                            <div class="tab-header">
+                                <button class="tab-btn active" onclick="alternarAba('cursos')">Cursos</button><button class="tab-btn" onclick="alternarAba('inscricoes')">Inscrições</button>
+                            </div>
+                            
+                            <select id="filtro-status" class="select-filter" onchange="renderizarListagem()">
+                                <option value="TODOS">TODOS</option>
+                                <option value="ATIVO">Aprovados</option>
+                                <option value="INATIVO">Não Aprovados</option>
+                            </select>
+                            <div id="lista-conteudo"></div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SEÇÃO 2.1: CARTEIRAS -->
+                <section id="page-carteiras" class="page-view" style="display: none; padding: 24px; min-height: 100vh;">
+                    
+                    <!-- Cabeçalho & Botão de Nova Carteira -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2 style="margin: 0; font-size: 1.5rem; color: #0f172a; display: flex; align-items: center; gap: 8px;">
+                                <i class="ri-wallet-3-line" style="color: #2563eb;"></i> Carteiras e Visão Geral
+                            </h2>
+                            <p style="margin: 4px 0 0 0; color: #64748b; font-size: 0.9rem;">Gerencie contas, saldos, permissões e histórico de transações.</p>
+                        </div>
+                        <button onclick="abrirModalNovaCarteira()" style="background: #2563eb; color: #fff; border: none; padding: 10px 16px; border-radius: 30px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);">
+                            <i class="ri-add-line" style="font-size: 1.1rem;"></i> Criar Nova Carteira
+                        </button>
+                    </div>
+
+                    <!-- 4 Cards KPI no Topo -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                        <div style="background: #fff; padding: 20px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                            <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: flex; align-items: center; gap: 6px;"><i class="ri-money-dollar-circle-line" style="color:#16a34a;"></i> SALDO TOTAL (MINHAS)</span>
+                            <h3 id="kpiSaldoMinhas" style="margin: 8px 0 0 0; font-size: 1.4rem; color: #0f172a;">0.00 MT</h3>
+                        </div>
+                        <div style="background: #fff; padding: 20px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                            <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: flex; align-items: center; gap: 6px;"><i class="ri-share-line" style="color:#2563eb;"></i> COMPARTILHADAS (TODOS)</span>
+                            <h3 id="kpiSaldoTodos" style="margin: 8px 0 0 0; font-size: 1.4rem; color: #0f172a;">0.00 MT</h3>
+                        </div>
+                        <div style="background: #fff; padding: 20px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                            <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: flex; align-items: center; gap: 6px;"><i class="ri-folder-user-line" style="color:#9333ea;"></i> TOTAL DE MINHAS CARTEIRAS</span>
+                            <h3 id="kpiTotalMinhas" style="margin: 8px 0 0 0; font-size: 1.4rem; color: #0f172a;">0</h3>
+                        </div>
+                        <div style="background: #fff; padding: 20px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                            <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; display: flex; align-items: center; gap: 6px;"><i class="ri-safe-2-line" style="color:#d97706;"></i> GERAL ACUMULADO</span>
+                            <h3 id="kpiSaldoGeral" style="margin: 8px 0 0 0; font-size: 1.4rem; color: #16a34a;">0.00 MT</h3>
+                        </div>
+                    </div>
+
+                    <!-- Layout Flex/Grid: Gráfico (Esquerda) & Tabela Responsiva (Direita) -->
+                    <div class="carteiras-grid-layout" style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; align-items: start;">
+                        
+                        <!-- Lado Esquerdo: Gráfico de Transações -->
+                        <div style="background: #fff; padding: 20px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                            <h4 style="margin: 0 0 16px 0; font-size: 1rem; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                                <i class="ri-bar-chart-2-line" style="color: #2563eb;"></i> STATUS DAS TRANZAÇÕES
+                            </h4>
+                            <div id="graficoTransacoesContainer" style="height: 260px; display: flex; align-items: flex-end; justify-content: space-around; gap: 10px; padding-bottom: 10px; border-bottom: 2px solid #f1f5f9;">
+                                <!-- Barras injetadas por JS -->
+                            </div>
+                            <div style="display: flex; justify-content: center; gap: 16px; margin-top: 12px; font-size: 0.75rem; color: #64748b;">
+                                <span><i class="ri-checkbox-blank-circle-fill" style="color:#d97706;"></i> Pendentes</span>
+                                <span><i class="ri-checkbox-blank-circle-fill" style="color:#16a34a;"></i> Aprovadas</span>
+                                <span><i class="ri-checkbox-blank-circle-fill" style="color:#dc2626;"></i> Rejeitadas</span>
+                            </div>
+                        </div>
+
+                        <!-- Lado Direito: Tabela Responsiva de Listagem -->
+                        <div style="background: #fff; padding: 20px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02); overflow-x: auto;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                                <h4 style="margin: 0; font-size: 1rem; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                                    <i class="ri-table-line" style="color: #2563eb;"></i> MINHAS CARTEIRAS
+                                </h4>
+                                <button onclick="carregarTelaCarteiras()" style="background: #f1f5f9; border: none; padding: 6px 12px; border-radius: 30px; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: #475569; display: flex; align-items: center; gap: 4px;">
+                                    <i class="ri-refresh-line"></i> ACTUALIZAR
+                                </button>
+                            </div>
+                            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; min-width: 550px;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid #f1f5f9; color: #64748b;">
+                                        <th style="padding: 10px;">CONTA</th>
+                                        <th style="padding: 10px;">DESTINADO</th>
+                                        <th style="padding: 10px;">PROPRIETARIO</th>
+                                        <th style="padding: 10px;">SALDO</th>
+                                        <th style="padding: 10px;">STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaCarteirasCorpo">
+                                    <tr><td colspan="5" style="text-align: center; padding: 20px; color: #94a3b8;">A carregar carteiras...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                <!-- Modal Nova Carteira -->
+                <div id="modalNovaCarteira" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10000; justify-content:center; align-items:center;">
+                    <div style="background:#fff; width:90%; max-width:450px; padding:24px; border-radius:30px; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                            <h3 style="margin:0; font-size:1.1rem; color:#0f172a;"><i class="ri-wallet-add-line"></i> Nova Carteira de Pagamento</h3>
+                            <button onclick="document.getElementById('modalNovaCarteira').style.display='none'" style="background:none; border:none; font-size:1.2rem; cursor:pointer;"><i class="ri-close-line"></i></button>
+                        </div>
+                        <form onsubmit="salvarNovaCarteira(event)" style="display:flex; flex-direction:column; gap:12px; font-size:0.85rem;">
+                            <div>
+                                <label style="font-weight:600; color:#475569;">Nome do Banco / Gateway:</label>
+                                <input type="text" id="novaBanco" required placeholder="Ex: M-Pesa, E-mola, BCI" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px;">
+                            </div>
+                            <div>
+                                <label style="font-weight:600; color:#475569;">Titular da Conta:</label>
+                                <input type="text" id="novaTitular" required placeholder="Nome do Titular" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px;">
+                            </div>
+                            <div>
+                                <label style="font-weight:600; color:#475569;">Número da Conta:</label>
+                                <input type="text" id="novaNumero" required placeholder="Ex: 841234567" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px;">
+                            </div>
+                            <div>
+                                <label style="font-weight:600; color:#475569;">Destinado a:</label>
+                                <select id="novaDestinado" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px;">
+                                    <option value="MEUS_CURSOS">Meus Cursos (Apenas criador)</option>
+                                    <option value="TODOS">Todos (Global)</option>
+                                </select>
+                            </div>
+                            <button type="submit" style="background:#2563eb; color:#fff; border:none; padding:10px; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px;">Salvar Carteira</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Modal Detalhes da Carteira -->
+                <div id="modalDetalhesCarteira" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10000; justify-content:center; align-items:center;">
+                    <div style="background:#fff; width:90%; max-width:650px; max-height:85vh; overflow-y:auto; padding:24px; border-radius:30px; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:12px; margin-bottom:16px;">
+                            <h3 id="detalheTituloModal" style="margin:0; font-size:1.1rem; color:#0f172a;"><i class="ri-file-list-3-line"></i> DETALHES DA CARTEIRA</h3>
+                            <button onclick="document.getElementById('modalDetalhesCarteira').style.display='none'" style="background:none; border:none; font-size:1.2rem; cursor:pointer;"><i class="ri-close-line"></i></button>
+                        </div>
+                        <div id="conteudoDetalhesCarteira" style="font-size:0.85rem; color:#334155;"></div>
+                    </div>
+                </div>
+            </section>
+
+
+                <!-- SEÇÃO 3: MENSAGENS -->
+                <section id="page-mensagens" class="page-view" style="display: none;">
+                    <h2>Mensagens e Notificações</h2>
+                    <p style="margin-top: 8px; color: #718096;">Comunicações internas enviadas aos funcionários.</p>
+                </section>
+
+
+                <!-- SEÇÃO 4: SEGURANÇA -->
+                <section id="page-seguranca" class="page-view" style="display: none;">
+                    <h2>Segurança & Logs</h2>
+                    <p style="margin-top: 8px; color: #718096;">Registros de sessões, auditoria e tentativas de login.
+                    </p>
+                </section>
+
+
+                <!-- SEÇÃO 5: SISTEMA -->
+                <section id="page-sistema" class="page-view" style="display: none;">
+                    <h2>Configurações do Sistema</h2>
+                    <p style="margin-top: 8px; color: #718096;">Parâmetros gerais de funcionamento da plataforma CM
+                        CETROPROH.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!-- 
+    PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+    ******
+    DESENVOLVIDO POR: 
+    |Abdul faquir | Desenvolvedor web
+    |EMAIL: abdulfaquir03@gmail.com
+    |WHATSAPP: +258 879181555
+    |WEBSITE: https://lojium.vercel.app/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" type="image/jpg">
+    <title>{{title}}</title>
+
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="AUTENTICAÇÃO - Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logótipo e estudantes da CM-CETROPROHC em Lichinga" />
+    <meta property="og:locale" content="pt_MZ" />
+    <meta property="og:site_name" content="CM-CETROPROHC, LTD" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta name="twitter:title" content="CM-CETROPROHC | Transformação Profissional" />
+    <meta name="twitter:description" content="Capacitação prática e consultoria de negócios em Niassa. Inscreva-se nos nossos cursos online e presenciais." />
+    <meta name="twitter:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <main>
+        <section id="section-login">
+            <div>
+                <div>
+                    <div>CM CETROPROHC</div>
+                    <h2>LOGIN</h2>
+                </div>
+                <form id="form-login">
+                    <input type="email" id="login-email" placeholder="Digita o seu email" required>
+                    <input type="password" id="login-senha" placeholder="Digita sua senha" required>
+                    <input type="submit" value="Acessar a plataforma">
+                </form>
+                <p>Esqueceu a senha? <span id="btn-to-recovery"
+                        style="cursor: pointer; text-decoration: underline;">Clique aqui!</span></p>
+                <p>Não tem conta? <span id="btn-to-register" style="cursor: pointer; text-decoration: underline;">Clique
+                        aqui!</span></p>
+            </div>
+        </section>
+
+        <section id="section-register" style="display: none;">
+            <div>
+                <div>
+                    <div>CM CETROPROHC</div>
+                    <h2>CADASTRO</h2>
+                </div>
+                <form id="form-register">
+                    <input type="text" id="reg-nome" placeholder="Digita seu nome completo" required>
+                    <input type="email" id="reg-email" placeholder="Digita seu email valido" required>
+                    <input type="tel" id="reg-celular" placeholder="Digita seu WhatsApp/celular">
+                    <input type="password" id="reg-senha" placeholder="Digita sua palavra-passe" required>
+                    <input type="submit" value="Finalizar cadastro">
+                </form>
+                <p>Tem conta? <span id="btn-to-login-from-reg" style="cursor: pointer; text-decoration: underline;">Faça
+                        login</span></p>
+            </div>
+        </section>
+
+        <section id="section-forgot-password" style="display: none;">
+            <div>
+                <div>
+                    <div>CM CETROPROHC</div>
+                    <h2>RECUPERAR SENHA</h2>
+                </div>
+                <form id="form-forgot">
+                    <input type="email" id="forgot-email" placeholder="Digita seu email cadastrado" required>
+                    <input type="submit" value="Enviar código de recuperação">
+                </form>
+                <p id="forgot-msg" style="display: none;"></p>
+                <p>Lembrou da senha? <span id="btn-to-login-from-forgot"
+                        style="cursor: pointer; text-decoration: underline;">Faça login</span></p>
+            </div>
+        </section>
+
+        <section id="section-reset-password" style="display: none;">
+            <div>
+                <div>
+                    <div>CM CETROPROHC</div>
+                    <h2>REDEFINIR SENHA</h2>
+                </div>
+                <form id="form-reset">
+                    <input type="password" id="reset-senha" placeholder="Digita sua nova senha" required minlength="6">
+                    <input type="password" id="reset-senha-confirm" placeholder="Confirme sua nova senha" required
+                        minlength="6">
+                    <input type="submit" value="Alterar palavra-passe">
+                </form>
+                <p id="reset-msg" style="display: none;"></p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const secLogin = document.getElementById('section-login');
+        const secRegister = document.getElementById('section-register');
+        const secForgot = document.getElementById('section-forgot-password');
+        const secReset = document.getElementById('section-reset-password');
+
+        const btnToRecovery = document.getElementById('btn-to-recovery');
+        const btnToRegister = document.getElementById('btn-to-register');
+        const btnToLoginFromReg = document.getElementById('btn-to-login-from-reg');
+        const btnToLoginFromForgot = document.getElementById('btn-to-login-from-forgot');
+
+        const formLogin = document.getElementById('form-login');
+        const formRegister = document.getElementById('form-register');
+        const formForgot = document.getElementById('form-forgot');
+        const formReset = document.getElementById('form-reset');
+
+        const forgotMsg = document.getElementById('forgot-msg');
+        const resetMsg = document.getElementById('reset-msg');
+
+        function hideAllSections() {
+            secLogin.style.display = 'none';
+            secRegister.style.display = 'none';
+            secForgot.style.display = 'none';
+            secReset.style.display = 'none';
+        }
+
+        function showSection(section) {
+            hideAllSections();
+            section.style.display = 'block';
+        }
+
+        btnToRegister.addEventListener('click', () => showSection(secRegister));
+        btnToLoginFromReg.addEventListener('click', () => showSection(secLogin));
+        btnToRecovery.addEventListener('click', () => showSection(secForgot));
+        btnToLoginFromForgot.addEventListener('click', () => showSection(secLogin));
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramEmail = urlParams.get('email');
+        const paramCode = urlParams.get('code');
+
+        if (paramEmail && paramCode) {
+            showSection(secReset);
+        }
+
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const senha = document.getElementById('login-senha').value;
+
+            try {
+                const response = await fetch('/api/cm/usuarios/alu/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    if (data.token) {
+                        localStorage.setItem('token', data.token);
+                    }
+                    window.location.href = '/painel';
+                } else {
+                    alert(data.mensagem || 'Erro ao realizar login.');
+                }
+            } catch (err) {
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+
+        formRegister.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('reg-nome').value;
+            const email = document.getElementById('reg-email').value;
+            const celular = document.getElementById('reg-celular').value;
+            const senha = document.getElementById('reg-senha').value;
+
+            try {
+                const response = await fetch('/api/cm/usuarios/alu/cadastro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, celular, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    if (data.token) {
+                        localStorage.setItem('token', data.token);
+                    }
+                    window.location.href = '/painel';
+                } else {
+                    alert(data.mensagem || (data.erros ? data.erros.join('\n') : 'Erro ao cadastrar.'));
+                }
+            } catch (err) {
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+
+        formForgot.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('forgot-email').value;
+
+            try {
+                const response = await fetch('/api/cm/usuarios/alu/esqueci-senha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    forgotMsg.style.display = 'block';
+                    forgotMsg.innerText = 'Foi enviado um link de restaurar senha ao seu email. Verifique e altere a senha.';
+                } else {
+                    alert(data.mensagem || 'Erro ao processar pedido.');
+                }
+            } catch (err) {
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+
+        formReset.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const senha = document.getElementById('reset-senha').value;
+            const senhaConfirm = document.getElementById('reset-senha-confirm').value;
+
+            if (senha !== senhaConfirm) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/cm/usuarios/alu/redefinir-senha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: paramEmail,
+                        code: paramCode,
+                        novaSenha: senha
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    alert('Senha redefinida com sucesso!');
+                    window.location.href = '/painel';
+                } else {
+                    alert(data.mensagem || 'Erro ao redefinir a senha.');
+                }
+            } catch (err) {
+                alert('Erro de conexão com o servidor.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token')
+            if (!token) return
+            try {
+                const payloadBase64 = token.split('.')[1];
+                const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
+                const decoded = JSON.parse(payloadJson)
+                const tempoAtual = Math.floor(Date.now() / 1000)
+                if (decoded.exp > tempoAtual && decoded.type === 'ALU') {
+                window.location.href = '/painel'
+                }
+            } catch (err) {
+                console.error('Token inválido ou corrompido:', err);
+            }
+        })
+
+if (paramEmail && paramCode) {
+    showSection(secReset);
+}
+
+formReset.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const senha = document.getElementById('reset-senha').value;
+    const senhaConfirm = document.getElementById('reset-senha-confirm').value;
+
+    if (senha !== senhaConfirm) {
+        alert('As senhas não coincidem!');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/cm/usuarios/alu/redefinir-senha', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: paramEmail, code: paramCode, novaSenha: senha })
+        });
+        const data = await response.json();
+
+        if (response.ok && data.status) {
+            alert('Senha redefinida com sucesso! Faça login com a sua nova senha.');
+            showSection(secLogin);
+            window.history.replaceState({}, document.title, window.location.pathname); // Limpa os parâmetros do URL
+        } else {
+            alert(data.mensagem || 'Erro ao redefinir a senha.');
+        }
+    } catch (err) {
+        alert('Erro de conexão com o servidor.');
+    }
+});
+    </script>
+</body>
+
+</html>
+

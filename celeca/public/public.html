@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Celeca Imobiliária</title>
+<link rel="icon" href="/logo.jpg">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/comum.css">
+<link rel="stylesheet" href="/public.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<header id="hd">
+  <a class="brand" id="lnk-home" href="/"><img src="/logo.jpg" alt="Celeca"><span>CeLeCa<small>Imobiliária</small></span></a>
+  <nav><a href="/" class="lnk-home">Início</a><a href="#imoveis" class="lnk-lista">Imóveis</a><a href="#contacto">Contacto</a></nav>
+</header>
+
+<main>
+  <!-- PÁGINA INICIAL -->
+  <section id="home" hidden>
+    <div class="hero">
+      <i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i>
+      <div class="hero-in">
+        <h1>Encontre o imóvel certo, com quem conhece Nampula.</h1>
+        <p>Casas, flats, terrenos e espaços comerciais verificados, com acompanhamento de um corretor do primeiro contacto à escritura.</p>
+        <a class="btn" href="#imoveis"><i class="ri-search-line"></i>Pesquisar imóveis</a>
+      </div>
+      <a class="scroll" href="#imoveis" aria-label="Descer"><i class="ri-arrow-down-line"></i></a>
+    </div>
+    <div class="wrap">
+      <form id="form-filtro" class="filtro reveal">
+        <label class="f"><span>Tipo de imóvel</span>
+          <select id="f-tipo"><option value="">Todos os tipos</option><option value="casa">Casa</option><option value="flat">Flat</option><option value="armazem">Armazém</option><option value="terreno">Terreno</option><option value="comercial">Comercial</option><option value="chacara">Chácara/Campo</option></select></label>
+        <label class="f"><span>Local ou código</span><input id="f-q" placeholder="Bairro, cidade ou código I000000"></label>
+        <button class="btn" type="submit"><i class="ri-search-line"></i>Buscar</button>
+      </form>
+      <h2 class="tit reveal" id="imoveis">Imóveis disponíveis</h2>
+      <div id="lista" class="cards"></div>
+    </div>
+  </section>
+
+  <!-- AUTENTICAÇÃO -->
+  <section id="auth" class="centro" hidden>
+    <div class="box">
+      <img class="logo-box" src="/logo.jpg" alt="">
+      <h2>Portal Celeca</h2><p class="sub">Acesso reservado à direcção, filiais e equipas.</p>
+      <form id="form-login">
+        <label class="f"><span>Email</span><input name="email" type="email" required autocomplete="username"></label>
+        <label class="f"><span>Senha</span><input name="senha" type="password" required autocomplete="current-password"></label>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+      <p class="link">Esqueceu a senha? <a href="#" id="esqueci">Clique aqui</a></p>
+      <form id="form-esqueci" hidden>
+        <label class="f"><span>Email da sua conta</span><input name="email" type="email" required></label>
+        <button class="btn alt" type="submit">Receber link por email</button>
+        <p class="ok-msg" id="esqueci-msg" hidden><i class="ri-mail-send-line"></i> Enviámos um email para essa conta. Abra-o e siga o link para definir uma nova senha.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONVITE / DEFINIR SENHA -->
+  <section id="convite" class="centro" hidden>
+    <div class="box">
+      <img class="logo-box" src="/logo.jpg" alt="">
+      <h2>Bem-vindo(a)</h2>
+      <p class="sub" id="conv-info">A validar o convite…</p>
+      <form id="form-convite" hidden>
+        <label class="f"><span>Email</span><input name="email" type="email" readonly></label>
+        <label class="f"><span>Nome</span><input name="nome" required></label>
+        <label class="f"><span>Senha (mín. 6 caracteres)</span><input name="senha" type="password" minlength="6" required autocomplete="new-password"></label>
+        <button class="btn" type="submit">Guardar e continuar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- DETALHE DO IMÓVEL -->
+  <section id="imovel" class="wrap" hidden></section>
+</main>
+
+<footer id="contacto">
+  <div class="ft-grid">
+    <div><a class="brand" href="/"><img src="/logo.jpg" alt=""><span>CeLeCa<small>Imobiliária</small></span></a>
+      <p>Compra, venda, aluguer e avaliação de imóveis em Nampula e arredores.</p></div>
+    <div><h4>Links úteis</h4><a href="/" class="lnk-home">Início</a><a href="#imoveis" class="lnk-lista">Imóveis</a><a href="/authentication">Portal</a></div>
+    <div><h4>Contacto</h4><span><i class="ri-map-pin-2-line"></i> Nampula, Moçambique</span><span><i class="ri-building-line"></i> Celeca Imobiliária</span></div>
+  </div>
+  <div class="ft-base">© <span id="ano"></span> Celeca Imobiliária · Desenvolvida por: <a href="https://lojium.vercel.app/abdulfaquir" target="_blank" rel="noopener">Abdul faquir</a></div>
+</footer>
+
+<script src="/comum.js"></script>
+<script src="/public.js"></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!-- 
+    PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+    ******
+    DESENVOLVIDO POR: 
+    |Abdul faquir | Desenvolvedor web
+    |EMAIL: abdulfaquir03@gmail.com
+    |WHATSAPP: +258 879181555
+    |WEBSITE: https://lojium.vercel.app/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" type="image/jpg">
+    <title>{{title}}</title>
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="COORDENAÇÃO - Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logótipo e estudantes da CM-CETROPROHC em Lichinga" />
+    <meta property="og:locale" content="pt_MZ" />
+    <meta property="og:site_name" content="CM-CETROPROHC, LTD" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta name="twitter:title" content="CM-CETROPROHC | Transformação Profissional" />
+    <meta name="twitter:description" content="Capacitação prática e consultoria de negócios em Niassa. Inscreva-se nos nossos cursos online e presenciais." />
+    <meta name="twitter:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <script>
+        (function checkSuperAdmin() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/portal';
+                return;
+            }
+            try {
+                const payloadBase64 = token.split('.')[1];
+                const decoded = JSON.parse(atob(payloadBase64));
+                const role = decoded.code || decoded.type || '';
+                if (role !== 'COO') {
+                    window.location.href = '/portal';
+                }
+            } catch (e) {
+                localStorage.removeItem('token');
+                window.location.href = '/portal';
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <div id="top-loader" class="top-loader"></div>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="app-container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <i class="ri-box-3-line"></i>
+                <span>CM CETROPROH</span>
+            </div>
+
+            <div class="menu-label">CM COORDENAÇÃO ÚNICA</div>
+
+            <div class="nav-item active" onclick="navigate('dashboard', this)">
+                <i class="ri-dashboard-line"></i>
+                <span>Dashboard</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('usuarios', this)">
+                <i class="ri-group-line"></i>
+                <span>Formadores</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('turmas', this)">
+                <i class="ri-stack-line"></i>
+                <span>Conteudos</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('mensagens', this)">
+                <i class="ri-team-line"></i>
+                <span>Formandos</span>
+            </div>
+
+            <!-- <div class="menu-label">Configurações</div>
+
+            <div class="nav-item" onclick="navigate('seguranca', this)">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Segurança</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('sistema', this)">
+                <i class="ri-settings-4-line"></i>
+                <span>Sistema</span>
+            </div> -->
+        </nav>
+
+
+
+
+
+        <div class="main-wrapper">
+            <header>
+                <div class="header-left">
+                    <button class="btn-hamburger" onclick="toggleSidebar()">
+                        <i class="ri-menu-line"></i>
+                    </button>
+                </div>
+
+                <div class="header-right">
+                    <button class="header-icon-btn"><i class="ri-search-line"></i></button>
+                    <button class="header-icon-btn"><i class="ri-notification-3-line"></i></button>
+                    <div class="profile-avatar">
+                        <i class="ri-user-line"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content">
+
+                <!-- SEÇÃO 1: DASHBOARD -->
+                <section id="page-dashboard" class="page-view">
+                    <div class="dashboard-cards">
+                        <div class="card-stat blue">
+                            <div class="lbl">Turmas ativas</div>
+                            <div class="val" id="coo-stat-turmas">0</div>
+                        </div>
+                        <div class="card-stat yellow">
+                            <div class="lbl">Cursos cadastrados</div>
+                            <div class="val" id="coo-stat-cursos">0</div>
+                        </div>
+                        <div class="card-stat red">
+                            <div class="lbl">Pendentes finanças</div>
+                            <div class="val" id="coo-stat-pendentes">0</div>
+                        </div>
+                        <div class="card-stat green">
+                            <div class="lbl">Alunos inscritos</div>
+                            <div class="val" id="coo-stat-alunos">0</div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <!-- SEÇÃO 2: USUÁRIOS -->
+                <section id="page-usuarios" class="page-view" style="display: none;">
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title"><h3><span id="numeroDeCordenadores"></span>Meus formadores</h3></div>
+                            <div class="table-search"><i class="ri-search-line"></i><input type="text" id="input-search-table" placeholder="Pesquisar por nome ou e-mail..." onkeyup="filtrarTabelaUsuarios()"></div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead><tr><th>ID</th><th>Nome</th><th>E-mail</th><th>Cargo</th><th style="text-align: center;">Ações</th></tr></thead>
+                                <tbody id="tbody-cooredenadores"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="modal-usuario-detalhes" class="modal-overlayDatalhes">
+                        <div class="modal-content">
+                            <div class="modal-header"><h3 id="modal-nome-usuario">Detalhes do Usuário</h3>
+                            <button onclick="fecharModalDetalhes()" style="border:none; background:none; font-size:1.2rem; cursor:pointer;"><i class="ri-close-line"></i></button>
+                            </div>
+                            <div class="modal-body" id="modal-body-conteudo">
+                            <!-- Dados injetados dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <!-- SEÇÃO 2.1: TURMAS -->
+                <section id="page-turmas" class="page-view" style="display: none;">
+                    <div class="controlers">
+                        <button class="btn-primary" id="btn-toggle-view" onclick="alternarModoExibicao()"><i class="ri-book-read-line"></i> Ver Cursos</button>
+                        <button class="btn-primary" onclick="abrirModalCriarTurma()"><i class="ri-add-line"></i> Nova turma</button>
+                        <button class="btn-primary" onclick="abrirModalCurso()"><i class="ri-add-line"></i> Novo curso</button>
+                    </div>
+
+                    <div id="modal-criar-turma" class="modal-overlay" style="display: none;">
+                        <div class="modal-card">
+                            <div class="modal-header">
+                                <h3><i class="ri-git-repository-commits-line"></i> CADASTRAR NOVA SALA DE AULA</h3>
+                                <button class="btn-close-modal" onclick="fecharModalCriarTurma()">&times;</button>
+                            </div>
+
+                            <form id="form-criar-turma" onsubmit="salvarNovaTurma(event)" class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="turma-nome">Nome da Turma *</label>
+                                <input type="text" id="turma-nome" placeholder="Ex: Turma A - Gestão de RH - Manhã" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="turma-modalidade">Modalidade *</label>
+                                <select id="turma-modalidade" required>
+                                <option value="PRESENCIAL">Presencial</option>
+                                <option value="ONLINE">Online</option>
+                                <option value="HIBRIDO">Híbrido</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="turma-vagas">Vagas Totais *</label>
+                                <input type="number" id="turma-vagas" min="1" value="30" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="turma-local">Local / Sala / Link *</label>
+                                <input type="text" id="turma-local" placeholder="Ex: Sala 02 - Sede Lichinga ou Link Meet" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="turma-data-inicio">Data de Início</label>
+                                <input type="date" id="turma-data-inicio">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="turma-data-fim">Data de Término</label>
+                                <input type="date" id="turma-data-fim">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="turma-horario">Horário / Dias *</label>
+                                <input type="text" id="turma-horario" placeholder="Ex: Segunda a Sexta, 08h00 - 10h00" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="turma-status">Estado Inicial *</label>
+                                <select id="turma-status" required>
+                                <option value="PLANEADA">Planeada</option>
+                                <option value="INSCRICOES_ABERTAS">Inscrições Abertas</option>
+                                </select>
+                            </div>
+
+                            <div class="modal-footer full-width">
+                                <button type="button" class="btn-cancel" onclick="fecharModalCriarTurma()">Cancelar</button>
+                                <button type="submit" class="btn-submit"><i class="ri-save-line"></i> Guardar Turma</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div id="modal-curso" class="modal-overlay" style="display: none;">
+                        <div class="modal-card" style="scrollbar-width: none; -ms-overflow-style: none;">
+                            <div class="modal-header">
+                            <h3><i class="ri-book-read-line"></i> Novo Curso</h3>
+                            <button class="btn-close-modal" onclick="fecharModalCurso()">&times;</button>
+                            </div>
+                            <form id="form-curso" onsubmit="salvarCurso(event)" class="form-grid">
+                            <div class="form-group full-width"><label>Nome do Curso *</label><input type="text" id="c-nome" required></div>
+                            <div class="form-group"><label>Área</label><input type="text" id="c-area" placeholder="Ex: Gestão"></div>
+                            <div class="form-group"><label>Carga Horária (h)</label><input type="number" id="c-carga" min="1"></div>
+                            <div class="form-group full-width"><label>Descrição</label><input type="text" id="c-desc"></div>
+                            <div class="form-group full-width"><label>Imagem do Curso (Opcional)</label><input type="file" id="c-img" accept="image/*"></div>
+                            <div class="form-group full-width"><label>Estado Inicial</label>
+                                <select id="c-status">
+                                <option value="RASCUNHO">Rascunho</option>
+                                <option value="AGUARDAR_APROVACAO">Aguardar Aprovação do Preço</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer full-width">
+                                <button type="button" class="btn-cancel" onclick="fecharModalCurso()">Cancelar</button>
+                                <button type="submit" class="btn-submit">Salvar Curso</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="container-turmas-wrapper">
+                        <div id="div-lista-turmas" class="turmas-grid"></div>
+                        <div id="div-detalhes-turma" style="display: none;">
+                            <button class="btn-voltar-turmas" onclick="voltarParaLista()">
+                            <i class="ri-arrow-left-line"></i> <span id="lbl-btn-voltar">Voltar à Lista</span>
+                            </button>
+                            <div id="conteudo-detalhes-turma" class="detalhes-card-container"></div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SEÇÃO 3: MENSAGENS -->
+                <section id="page-mensagens" class="page-view" style="display: none;">
+<div style="padding: 20px;">
+    <!-- Cabeçalho e Filtros -->
+    <div style="background: #fff; padding: 24px; border-radius: 30px; border: 1px solid #e2e8f0; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+            <div>
+                <h2 style="margin: 0; font-size: 1.25rem; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                    <i class="ri-user-shared-line" style="color: #2563eb;"></i> Gestão Centralizada de Formandos
+                </h2>
+                <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: #64748b;">Consulte alunos e as suas múltiplas inscrições em cursos e turmas.</p>
+            </div>
+            <div id="contador-alunos-badge" style="background: #eff6ff; color: #2563eb; padding: 6px 14px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; border: 1px solid #bfdbfe;">
+                0 Formandos Registados
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+            <div style="flex: 1; min-width: 240px; position: relative;">
+                <i class="ri-search-line" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                <input type="text" id="filtro-pesquisa-aluno" oninput="filtrarAlunosTabela()" placeholder="Pesquisar por nome, e-mail ou código de inscrição..." style="width: 100%; padding: 10px 14px 10px 40px; border-radius: 30px; border: 1px solid #cbd5e1; font-size: 0.85rem; outline: none; background: #f8fafc;">
+            </div>
+            <div style="min-width: 230px;">
+                <select id="filtro-categoria-aluno" onchange="filtrarAlunosTabela()" style="width: 100%; padding: 10px 14px; border-radius: 30px; border: 1px solid #cbd5e1; font-size: 0.85rem; outline: none; background: #f8fafc; cursor: pointer;">
+                    <option value="TODOS">Todos os Alunos</option>
+                    <option value="COM_INSCRICAO_SEM_TURMA">Tem Inscrição Sem Turma</option>
+                    <option value="PAGO_SEM_TURMA">Tem Inscrição Paga & Sem Turma</option>
+                    <option value="MULTIPLOS_CURSOS">Inscrito em +2 Cursos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabela Responsiva de Alunos com Múltiplas Inscrições -->
+    <div style="background: #fff; border-radius: 30px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
+                <thead>
+                    <tr style="background: #f8fafc; border-bottom: 1px solid #e2e8f0; color: #475569;">
+                        <th style="padding: 16px 20px; font-weight: 600;">Formando</th>
+                        <th style="padding: 16px 20px; font-weight: 600;">Contacto</th>
+                        <th style="padding: 16px 20px; font-weight: 600;">Cursos & Inscrições</th>
+                        <th style="padding: 16px 20px; font-weight: 600;">Turmas Atribuídas</th>
+                        <th style="padding: 16px 20px; font-weight: 600; text-align: right;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-corpo-alunos">
+                    <tr><td colspan="5" style="padding: 30px; text-align: center; color: #64748b;">A carregar dados do painel...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Moderno de Gestão por Aluno e Inscrições -->
+<div id="popup-gestao-aluno" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(4px);">
+    <div style="background: #fff; width: 100%; max-width: 800px; max-height: 90vh; border-radius: 30px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);">
+        <div style="padding: 20px 24px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; background: #f8fafc;">
+            <h3 style="margin: 0; font-size: 1.1rem; color: #1e293b; display: flex; align-items: center; gap: 8px;">
+                <i class="ri-user-settings-line" style="color: #2563eb;"></i> Perfil e Inscrições do Formando
+            </h3>
+            <button type="button" onclick="fecharPopupAluno()" style="background: none; border: none; font-size: 1.25rem; color: #64748b; cursor: pointer;"><i class="ri-close-line"></i></button>
+        </div>
+        <div id="popup-aluno-conteudo" style="padding: 24px; overflow-y: auto; flex: 1; font-size: 0.9rem;">
+            <!-- Conteúdo dinâmico -->
+        </div>
+    </div>
+</div>
+                </section>
+
+
+                <!-- SEÇÃO 4: SEGURANÇA -->
+                <section id="page-seguranca" class="page-view" style="display: none;">
+                    <h2>Segurança & Logs</h2>
+                    <p style="margin-top: 8px; color: #718096;">Registros de sessões, auditoria e tentativas de login.
+                    </p>
+                </section>
+
+
+                <!-- SEÇÃO 5: SISTEMA -->
+                <section id="page-sistema" class="page-view" style="display: none;">
+                    <h2>Configurações do Sistema</h2>
+                    <p style="margin-top: 8px; color: #718096;">Parâmetros gerais de funcionamento da plataforma CM
+                        CETROPROH.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

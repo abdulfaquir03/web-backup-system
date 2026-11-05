@@ -1,0 +1,373 @@
+<!-- 
+    PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+    ******
+    DESENVOLVIDO POR: 
+    |Abdul faquir | Desenvolvedor web
+    |EMAIL: abdulfaquir03@gmail.com
+    |WHATSAPP: +258 879181555
+    |WEBSITE: https://lojium.vercel.app/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" type="image/jpg">
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="AREA PRIVADA - Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logótipo e estudantes da CM-CETROPROHC em Lichinga" />
+    <meta property="og:locale" content="pt_MZ" />
+    <meta property="og:site_name" content="CM-CETROPROHC, LTD" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta name="twitter:title" content="CM-CETROPROHC | Transformação Profissional" />
+    <meta name="twitter:description" content="Capacitação prática e consultoria de negócios em Niassa. Inscreva-se nos nossos cursos online e presenciais." />
+    <meta name="twitter:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <!-- MODAL DE ALERTA DE FUNCIONÁRIO -->
+    <div id="modal-alert" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Acesso Restrito</h3>
+            <p>Você é um funcionário da CM CETROPROHC? Esta página é de uso exclusivo para membros autorizados.</p>
+            <div class="modal-buttons">
+                <button class="btn-yes" id="btn-is-employee">Sim, sou funcionário</button>
+                <button class="btn-no" id="btn-not-employee">Não sou funcionário</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAINEL PRINCIPAL -->
+    <main>
+        <!-- 1. TELA DE LOGIN -->
+        <section id="section-login" class="card-box" style="display: none;">
+            <div class="brand-logo">
+                <h2>CM CETROPROHC</h2>
+            </div>
+            <h2>LOGIN</h2>
+            <form id="form-login">
+                <input type="email" id="login-email" placeholder="Digita o seu email" required>
+                <input type="password" id="login-senha" placeholder="Digita sua senha" required>
+                <input type="submit" value="Acessar o portal">
+            </form>
+            <p class="switch-text">Esqueceu a senha? <span id="to-forgot">Clique aqui!</span></p>
+            <p class="switch-text">Não tem conta? <span id="to-register">Criar conta</span></p>
+        </section>
+
+        <!-- 2. TELA DE CADASTRO -->
+        <section id="section-register" class="card-box" style="display: none;">
+            <div class="brand-logo">
+                <h2>CM CETROPROHC</h2>
+            </div>
+            <h2>CADASTRO</h2>
+            <form id="form-register">
+                <input type="text" id="reg-nome" placeholder="Digita seu nome completo" required>
+                <input type="email" id="reg-email" placeholder="Digita seu email valido" required>
+                <input type="tel" id="reg-celular" placeholder="Digita seu WhatsApp/celular">
+                <input type="password" id="reg-senha" placeholder="Digita sua palavra-passe" required minlength="6">
+                <input type="submit" value="Finalizar cadastro">
+            </form>
+            <p class="switch-text">Já tem conta? <span id="to-login-from-reg">Faça login</span></p>
+        </section>
+
+        <!-- 3. TELA DE VERIFICAÇÃO DE EMAIL (2FA CODE) -->
+        <section id="section-verify-email" class="card-box" style="display: none;">
+            <div class="brand-logo">
+                <h2>CM CETROPROHC</h2>
+            </div>
+            <h2>VERIFICAR EMAIL</h2>
+            <p class="info-text">Foi enviado um código de verificação para o seu e-mail. Verifique a caixa de entrada e
+                cole aqui o código de 6 dígitos.</p>
+            <form id="form-verify">
+                <input type="text" id="verify-code" placeholder="Código de 6 dígitos" maxlength="6" required
+                    style="text-transform: uppercase; letter-spacing: 4px; text-align: center;">
+                <input type="submit" value="Confirmar código">
+            </form>
+        </section>
+
+        <!-- 4. TELA DE AGUARDANDO ATRIBUIÇÃO DE CARGO -->
+        <section id="section-awaiting-role" class="card-box" style="display: none;">
+            <div class="brand-logo"></div>
+            <h2>ANÁLISE EM ANDAMENTO</h2>
+            <p class="info-text">Foram enviadas as suas informações para o coordenador geral analisar e lhe atribuir um
+                cargo. Por favor, aguarde a liberação do seu acesso.</p>
+
+            <button type="button" class="btn-check-role" id="btn-check-role">
+                Já recebeu o e-mail? Clique aqui para verificar
+            </button>
+
+            <div id="role-status-msg" class="role-result-box" style="display: none;"></div>
+        </section>
+
+        <!-- 5. TELA DE RECUPERAR SENHA -->
+        <section id="section-forgot" class="card-box" style="display: none;">
+            <div class="brand-logo">
+                <h2>CM CETROPROHC</h2>
+            </div>
+            <h2>RECUPERAR SENHA</h2>
+            <form id="form-forgot">
+                <input type="email" id="forgot-email" placeholder="Digita seu email cadastrado" required>
+                <input type="submit" value="Enviar link de recuperação">
+            </form>
+            <div id="forgot-msg" class="feedback-msg" style="display: none;"></div>
+            <p class="switch-text">Lembrou da senha? <span id="to-login-from-forgot">Faça login</span></p>
+        </section>
+    </main>
+
+    <script>
+        const modalAlert = document.getElementById('modal-alert');
+        const btnIsEmployee = document.getElementById('btn-is-employee');
+        const btnNotEmployee = document.getElementById('btn-not-employee');
+
+        const secLogin = document.getElementById('section-login');
+        const secRegister = document.getElementById('section-register');
+        const secVerify = document.getElementById('section-verify-email');
+        const secAwaiting = document.getElementById('section-awaiting-role');
+        const secForgot = document.getElementById('section-forgot');
+
+        const formLogin = document.getElementById('form-login');
+        const formRegister = document.getElementById('form-register');
+        const formVerify = document.getElementById('form-verify');
+        const formForgot = document.getElementById('form-forgot');
+        const forgotMsg = document.getElementById('forgot-msg');
+
+        function hideAll() {
+            modalAlert.style.display = 'none';
+            secLogin.style.display = 'none';
+            secRegister.style.display = 'none';
+            secVerify.style.display = 'none';
+            secAwaiting.style.display = 'none';
+            secForgot.style.display = 'none';
+        }
+
+        function setAppState(state) {
+            localStorage.setItem('portal_state', state);
+            renderState(state);
+        }
+
+        function renderState(state) {
+            hideAll();
+            switch (state) {
+                case 'REGISTER':
+                    secRegister.style.display = 'flex';
+                    break;
+                case 'VERIFY_EMAIL':
+                    secVerify.style.display = 'flex';
+                    break;
+                case 'AWAITING_ROLE':
+                    secAwaiting.style.display = 'flex';
+                    break;
+                case 'FORGOT':
+                    secForgot.style.display = 'flex';
+                    break;
+                case 'LOGIN':
+                    secLogin.style.display = 'flex';
+                    break;
+                default:
+                    modalAlert.style.display = 'flex';
+                    break;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedState = localStorage.getItem('portal_state');
+            renderState(savedState);
+        });
+
+        btnNotEmployee.addEventListener('click', () => {
+            window.location.href = '/';
+        });
+
+        btnIsEmployee.addEventListener('click', () => {
+            setAppState('LOGIN');
+        });
+
+        document.getElementById('to-register').addEventListener('click', () => setAppState('REGISTER'));
+        document.getElementById('to-forgot').addEventListener('click', () => setAppState('FORGOT'));
+        document.getElementById('to-login-from-reg').addEventListener('click', () => setAppState('LOGIN'));
+        document.getElementById('to-login-from-forgot').addEventListener('click', () => setAppState('LOGIN'));
+
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const senha = document.getElementById('login-senha').value;
+
+            try {
+                const response = await fetch('/api/cm/usuarios/portal/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    if (data.token) localStorage.setItem('token', data.token);
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    }
+                } else {
+                    alert(data.mensagem || 'Credenciais inválidas.');
+                }
+            } catch (err) {
+                alert('Erro de conexão ao servidor.');
+            }
+        });
+
+        formRegister.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('reg-nome').value;
+            const email = document.getElementById('reg-email').value;
+            const celular = document.getElementById('reg-celular').value;
+            const senha = document.getElementById('reg-senha').value;
+
+            try {
+                const response = await fetch('/api/cm/usuarios/portal/cadastro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, email, celular, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    if (data.token) localStorage.setItem('token', data.token);
+                    setAppState('VERIFY_EMAIL');
+                } else {
+                    alert(data.mensagem || (data.erros ? data.erros.join('\n') : 'Erro no cadastro.'));
+                }
+            } catch (err) {
+                alert('Erro de conexão ao servidor.');
+            }
+        });
+
+        formVerify.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const code = document.getElementById('verify-code').value.toUpperCase();
+            const token = localStorage.getItem('token');
+
+            try {
+                const response = await fetch('/api/cm/usuarios/verificacaoemail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ code })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    if (data.type && data.type.trim() !== '') {
+                        window.location.href = data.redirect;
+                    } else {
+                        setAppState('AWAITING_ROLE');
+                    }
+                } else {
+                    alert(data.mensagem || 'Código inválido ou expirado.');
+                }
+            } catch (err) {
+                alert('Erro de conexão ao servidor.');
+            }
+        });
+
+        formForgot.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('forgot-email').value;
+
+            try {
+                const response = await fetch('/api/cm/usuarios/recuperarsenha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status) {
+                    forgotMsg.style.display = 'block';
+                    forgotMsg.innerText = 'Foi enviado um link de redefinição no seu e-mail.';
+                } else {
+                    alert(data.mensagem || 'Erro ao solicitar recuperação.');
+                }
+            } catch (err) {
+                alert('Erro de conexão ao servidor.');
+            }
+        });
+
+
+        const btnCheckRole = document.getElementById('btn-check-role');
+        const roleStatusMsg = document.getElementById('role-status-msg');
+
+        btnCheckRole.addEventListener('click', async () => {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                alert('Sessão expirada. Faça o cadastro ou login novamente.');
+                setAppState('LOGIN');
+                return;
+            }
+
+            try {
+                btnCheckRole.innerText = 'Consultando...';
+                btnCheckRole.disabled = true;
+
+                const response = await fetch('/api/cm/usuarios/portal/verificar-cargo', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+                roleStatusMsg.style.display = 'block';
+
+                if (response.ok && data.status) {
+                    if (data.atribuido) {
+                        roleStatusMsg.className = 'role-result-box success';
+                        roleStatusMsg.innerHTML = `
+                    <strong>${data.mensagem}</strong><br><br>
+                    <span id="to-login-now" style="cursor: pointer; text-decoration: underline; font-weight: bold;">
+                        Clique aqui para fazer login agora
+                    </span>
+                `;
+
+                        document.getElementById('to-login-now').addEventListener('click', () => {
+                            setAppState('LOGIN');
+                        });
+                    } else {
+                        roleStatusMsg.className = 'role-result-box warning';
+                        roleStatusMsg.innerHTML = `
+                    ${data.mensagem}<br>
+                    <a href="/secretaria" class="link-secretaria">Falar com a Secretaria</a>
+                `;
+                    }
+                } else {
+                    alert(data.mensagem || 'Erro ao consultar status.');
+                }
+            } catch (err) {
+                alert('Erro de conexão ao servidor.');
+            } finally {
+                btnCheckRole.innerText = 'Já recebeu o e-mail? Clique aqui para verificar';
+                btnCheckRole.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

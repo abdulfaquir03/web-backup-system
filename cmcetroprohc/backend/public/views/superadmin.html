@@ -1,0 +1,350 @@
+<!-- 
+    PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+    ******
+    DESENVOLVIDO POR: 
+    |Abdul faquir | Desenvolvedor web
+    |EMAIL: abdulfaquir03@gmail.com
+    |WHATSAPP: +258 879181555
+    |WEBSITE: https://lojium.vercel.app/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg"
+        type="image/jpg">
+    <title>{{title}}</title>
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="ADMINISTRAÇÃO - Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logótipo e estudantes da CM-CETROPROHC em Lichinga" />
+    <meta property="og:locale" content="pt_MZ" />
+    <meta property="og:site_name" content="CM-CETROPROHC, LTD" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta name="twitter:title" content="CM-CETROPROHC | Transformação Profissional" />
+    <meta name="twitter:description"
+        content="Capacitação prática e consultoria de negócios em Niassa. Inscreva-se nos nossos cursos online e presenciais." />
+    <meta name="twitter:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        (function checkSuperAdmin() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/portal';
+                return;
+            }
+            try {
+                const payloadBase64 = token.split('.')[1];
+                const decoded = JSON.parse(atob(payloadBase64));
+                const role = decoded.code || decoded.type || '';
+                if (role !== 'SUPERADMIN') {
+                    window.location.href = '/portal';
+                }
+            } catch (e) {
+                localStorage.removeItem('token');
+                window.location.href = '/portal';
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <div id="top-loader" class="top-loader"></div>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="app-container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <i class="ri-box-3-line"></i>
+                <span>CM CETROPROH</span>
+            </div>
+
+            <div class="menu-label">CM SUPERADMIN</div>
+
+            <div class="nav-item active" onclick="navigate('dashboard', this)">
+                <i class="ri-dashboard-line"></i>
+                <span>Dashboard</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('usuarios', this)">
+                <i class="ri-group-line"></i>
+                <span>Funcionários</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('relatorio', this)">
+                <i class="ri-team-line"></i>
+                <span>Formandos</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('carteiras', this)">
+                <i class="ri-bank-card-line"></i>
+                <span>Carteiras</span>
+            </div>
+
+            <div class="menu-label">Configurações</div>
+
+            <div class="nav-item" onclick="navigate('seguranca', this)">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Segurança</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('sistema', this)">
+                <i class="ri-settings-4-line"></i>
+                <span>Sistema</span>
+            </div>
+        </nav>
+
+
+
+
+
+        <div class="main-wrapper">
+            <header>
+                <div class="header-left">
+                    <button class="btn-hamburger" onclick="toggleSidebar()">
+                        <i class="ri-menu-line"></i>
+                    </button>
+                </div>
+
+                <div class="header-right">
+                    <button class="header-icon-btn"><i class="ri-search-line"></i></button>
+                    <button class="header-icon-btn"><i class="ri-notification-3-line"></i></button>
+                    <div class="profile-avatar">
+                        <i class="ri-user-line"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content">
+
+                <!-- SEÇÃO 1: DASHBOARD -->
+                <section id="page-dashboard" class="page-view">
+                    <div class="dashboard-cards">
+                        <div class="card-stat blue">
+                            <div class="lbl">Receita Total</div>
+                            <div class="val" id="stat-receita-total">MZN 0,00</div>
+                        </div>
+                        <div class="card-stat yellow">
+                            <div class="lbl">Usuários Ativos</div>
+                            <div class="val" id="stat-usuarios-ativos">0</div>
+                        </div>
+                        <div class="card-stat red">
+                            <div class="lbl">Pendentes</div>
+                            <div class="val" id="stat-pendentes">0</div>
+                        </div>
+                        <div class="card-stat green">
+                            <div class="lbl">Taxa de Conversão</div>
+                            <div class="val" id="stat-taxa-conversao">0%</div>
+                        </div>
+                    </div>
+
+                    <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-top:24px;">
+                        <h3 style="margin-top:0; font-size:1.1rem; color:#0f172a;">ESTATÍSTICA DE TRANSAÇÕES E SALDOS POR CARTEIRA</h3>
+                        <div style="position:relative; height:300px; width:100%;"><canvas id="graficoTransacoesCarteiras"></canvas></div>
+                    </div>
+                </section>
+
+
+                <!-- SEÇÃO 2: USUÁRIOS -->
+                <section id="page-usuarios" class="page-view" style="display: none;">
+                    <div class="table-card">
+                        <div class="table-header">
+                            <div class="table-title">
+                                <h3><span id="numeroDeUsuarios"></span> Funcionários</h3>
+                            </div>
+                            <div class="table-search"><i class="ri-search-line"></i><input type="text"
+                                    id="input-search-table" placeholder="Pesquisar por nome ou e-mail..."
+                                    onkeyup="filtrarTabelaUsuarios()"></div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nome</th>
+                                        <th>E-mail</th>
+                                        <th>Cargo</th>
+                                        <th>Status</th>
+                                        <th style="text-align: center;">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-usuarios"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="modal-usuario-detalhes" class="modal-overlay">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="modal-nome-usuario">Detalhes do Usuário</h3>
+                                <button onclick="fecharModalDetalhes()"
+                                    style="border:none; background:none; font-size:1.2rem; cursor:pointer;"><i
+                                        class="ri-close-line"></i></button>
+                            </div>
+                            <div class="modal-body" id="modal-body-conteudo">
+                                <!-- Dados injetados dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SEÇÃO 2.1: RELATORIO -->
+                <section id="page-relatorio" class="page-view" style="display: none;">
+                    <div class="relatorios-container" style="padding:20px; font-family:inherit; color:#1e293b;">
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-bottom:24px;" id="kpi-cards-grid">
+                            <div style="background:#fff; padding:16px; border-radius:8px; border:1px solid #e2e8f0; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+                                <small style="color:#64748b; font-weight:600;">TOTAL DE ALUNOS</small>
+                                <h3 id="kpi-total-alunos" style="margin:6px 0 0 0; font-size:1.8rem; color:#2563eb;">0</h3>
+                            </div>
+                            <div style="background:#fff; padding:16px; border-radius:8px; border:1px solid #e2e8f0; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+                                <small style="color:#64748b; font-weight:600;">CURSOS ACTIVOS</small>
+                                <h3 id="kpi-total-cursos" style="margin:6px 0 0 0; font-size:1.8rem; color:#16a34a;">0</h3>
+                            </div>
+                            <div style="background:#fff; padding:16px; border-radius:8px; border:1px solid #e2e8f0; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+                                <small style="color:#64748b; font-weight:600;">INSCRIÇÕES PENDENTES</small>
+                                <h3 id="kpi-total-pendentes" style="margin:6px 0 0 0; font-size:1.8rem; color:#d97706;">0</h3>
+                            </div>
+                        </div>
+
+                    <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); overflow:hidden;">
+                        <div style="padding-bottom:16px; border-bottom:1px solid #e2e8f0; font-weight:700; color:#0f172a; display:flex; justify-content:space-between; align-items:center;">
+                            <span><i class="ri-team-line"></i> RELATÓRIO GERAL DE ALUNOS</span>
+                            <span style="font-size:0.8rem; color:#64748b; font-weight:normal;">Listagem completa de estudantes</span>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.85rem;">
+                                <thead>
+                                    <tr style="background:#f8fafc; color:#475569; border-bottom:2px solid #e2e8f0;">
+                                        <th style="padding:14px;">ESTUDANTE</th>
+                                        <th style="padding:14px;">CURSOS</th>
+                                        <th style="padding:14px;">COORDENAÇÃO</th>
+                                        <th style="padding:14px;">ESTADO</th>
+                                        <th style="padding:14px;">MENSALIDADES</th>
+                                        <th style="padding:14px;">DESEMPENHO</th>
+                                        <th style="padding:14px;">CERTIFICAÇÃO</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabela-relatorio-detalhado">
+                                    <tr>
+                                        <td colspan="7" style="text-align:center; padding:24px; color:#64748b;">A carregar dados analíticos...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SEÇÃO 3: CARTEIRAS -->
+                <section id="page-carteiras" class="page-view" style="display: none;">
+                    <div style="padding:20px; font-family:inherit; color:#1e293b; max-width:1200px; margin:0 auto;">
+                        
+                        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:20px; margin-bottom:24px;">
+                            <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                                <div style="color:#64748b; font-size:0.85rem; font-weight:600;">SALDO TOTAL ATIVO</div>
+                                <div id="card-saldo-total" style="font-size:1.6rem; font-weight:700; color:#0d9488; margin-top:8px;">MZN 0,00</div>
+                            </div>
+                            <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                                <div style="color:#64748b; font-size:0.85rem; font-weight:600;">PROJEÇÃO DE RECEITA (MATRÍCULAS)</div>
+                                <div id="card-projecao-receita" style="font-size:1.6rem; font-weight:700; color:#2563eb; margin-top:8px;">MZN 0,00</div>
+                            </div>
+                            <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                                <div style="color:#64748b; font-size:0.85rem; font-weight:600;">CARTEIRAS PENDENTES DE APROVAÇÃO</div>
+                                <div id="card-carteiras-pendentes" style="font-size:1.6rem; font-weight:700; color:#b91c1c; margin-top:8px;">0</div>
+                            </div>
+                        </div>
+
+                        <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px;">
+                            <h3 style="margin-top:0; font-weight:600; font-size:12pt; color:#0f172a;">CARTEIRAS REGISTADAS E ESTADO DE APROVAÇÃO</h3>
+                            <div style="overflow-x:auto; margin-top:14px;">
+                                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.85rem;">
+                                    <thead>
+                                        <tr style="background:#f8fafc; color:#475569; border-bottom:2px solid #e2e8f0;">
+                                            <th style="padding:12px;">BANCO</th>
+                                            <th style="padding:12px;">TITULAR</th>
+                                            <th style="padding:12px;">N.º DE CONTA</th>
+                                            <th style="padding:12px;">SALDO (MZN)</th>
+                                            <th style="padding:12px;">ESTADO</th>
+                                            <th style="padding:12px; text-align:center;">EVENTOS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-carteiras-financeiro">
+                                        <tr><td colspan="6" style="text-align:center; padding:20px; color:#64748b;">A carregar carteiras...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                            <h3 style="margin-top:0; font-weight:600; font-size:12pt; color:#0f172a;">ESTADO DE MENSALIDADES E TRANSAÇÕES</h3>
+                            <div style="overflow-x:auto; margin-top:14px;">
+                                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.85rem;">
+                                    <thead>
+                                        <tr style="background:#f8fafc; color:#475569; border-bottom:2px solid #e2e8f0;">
+                                            <th style="padding:12px;">INSCRIÇÃO</th> <th style="padding:12px;">ID DO ALUNO</th> <th style="padding:12px;">ID DO CURSO</th> <th style="padding:12px;">ESTADO MATRÍCULA</th> <th style="padding:12px;">MENSALIDADES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabela-mensalidades-financeiro">
+                                        <tr><td colspan="5" style="text-align:center; padding:20px; color:#64748b;">A carregar pagamentos...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SEÇÃO 4: SEGURANÇA -->
+                <section id="page-seguranca" class="page-view" style="display: none;">
+                    <div style="padding:20px; font-family:inherit; color:#1e293b; max-width:1200px; margin:0 auto;">
+                        <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05); margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+                            <div>
+                                <h3 style="margin:0; font-size:12pt; color:#0f172a;">SEGURANÇA, AUDITORIA E BACKUP</h3>
+                                <p style="margin:8px 0 0 0; color:#64748b; font-size:0.9rem;">Exportação granular de dados institucionais (Excel/JSON) e políticas de continuidade.</p>
+                            </div>
+                            <button onclick="executarBackupCompletoJSON()" style="background:#0f172a; color:#fff; border:none; padding:12px 20px; border-radius:12px; cursor:pointer; font-weight:600; display:flex; align-items:center; gap:8px;">
+                                <i class="ri-download-cloud-2-line"></i> BACKUP COMPLETO (JSON)
+                            </button>
+                        </div>
+                        <div style="background:#fff; border-radius:30px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                            <h3 style="margin-top:0; font-size:12pt; color:#0f172a;">RELATÓRIO CONSOLIDADO MULTI-PLANILHA (WORKBOOK INSTITUCIONAL)</h3>
+                            <p style="margin:8px 0 16px 0; font-size:0.85rem; color:#64748b;">Gera um único ficheiro Excel contendo separadores independentes para Cursos, Alunos, Funcionários e Carteiras.</p>
+                            <button onclick="exportarWorkbookCompleto()" style="background:#0d9488; color:#fff; border:none; padding:12px 24px; border-radius:10px; cursor:pointer; font-weight:600; display:flex; align-items:center; gap:8px;">
+                                <i class="ri-download-2-line"></i> DESCARREGAR EXCEL COMPLETO MULTI-PLANILHA
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- SEÇÃO 5: SISTEMA -->
+                <section id="page-sistema" class="page-view" style="display: none;">
+                    <h2>Configurações do Sistema</h2>
+                    <p style="margin-top: 8px; color: #718096;">Parâmetros gerais de funcionamento da plataforma CM
+                        CETROPROH.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!-- 
+    PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+    ******
+    DESENVOLVIDO POR: 
+    |Abdul faquir | Desenvolvedor web
+    |EMAIL: abdulfaquir03@gmail.com
+    |WHATSAPP: +258 879181555
+    |WEBSITE: https://lojium.vercel.app/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" type="image/jpg">
+    <title>{{title}}</title>
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="FORADORES - Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logótipo e estudantes da CM-CETROPROHC em Lichinga" />
+    <meta property="og:locale" content="pt_MZ" />
+    <meta property="og:site_name" content="CM-CETROPROHC, LTD" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta name="twitter:title" content="CM-CETROPROHC | Transformação Profissional" />
+    <meta name="twitter:description" content="Capacitação prática e consultoria de negócios em Niassa. Inscreva-se nos nossos cursos online e presenciais." />
+    <meta name="twitter:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <script>
+        (function checkSuperAdmin() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/portal';
+                return;
+            }
+            try {
+                const payloadBase64 = token.split('.')[1];
+                const decoded = JSON.parse(atob(payloadBase64));
+                const role = decoded.code || decoded.type || '';
+                if (role !== 'FOR') {
+                    window.location.href = '/portal';
+                }
+            } catch (e) {
+                localStorage.removeItem('token');
+                window.location.href = '/portal';
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <div id="top-loader" class="top-loader"></div>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="app-container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <i class="ri-box-3-line"></i>
+                <span>CM CETROPROH</span>
+            </div>
+
+            <div class="menu-label">CM FORMADOR</div>
+
+            <div class="nav-item active" onclick="navigate('dashboard', this)">
+                <i class="ri-dashboard-line"></i>
+                <span>Dashboard</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('usuarios', this)">
+                <i class="ri-graduation-cap-line"></i>
+                <span>Turmas</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('relatorio', this)">
+                <i class="ri-file-edit-fill"></i>
+                <span>Correção</span>
+            </div>
+
+            <!-- <div class="nav-item" onclick="navigate('mensagens', this)">
+                <i class="ri-mail-line"></i>
+                <span>Mensagens</span>
+            </div>
+
+            <div class="menu-label">Configurações</div>
+
+            <div class="nav-item" onclick="navigate('seguranca', this)">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Segurança</span>
+            </div>
+
+            <div class="nav-item" onclick="navigate('sistema', this)">
+                <i class="ri-settings-4-line"></i>
+                <span>Sistema</span>
+            </div> -->
+        </nav>
+
+
+
+
+
+        <div class="main-wrapper">
+            <header>
+                <div class="header-left">
+                    <button class="btn-hamburger" onclick="toggleSidebar()">
+                        <i class="ri-menu-line"></i>
+                    </button>
+                </div>
+
+                <div class="header-right">
+                    <button class="header-icon-btn"><i class="ri-search-line"></i></button>
+                    <button class="header-icon-btn"><i class="ri-notification-3-line"></i></button>
+                    <div class="profile-avatar">
+                        <i class="ri-user-line"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content">
+
+                <!-- SEÇÃO 1: DASHBOARD -->
+                <section id="page-dashboard" class="page-view">
+                    <div class="dashboard-cards">
+                        <div class="card-stat blue"><div class="lbl">Turmas</div><div class="val" id="val-turmas">0</div></div>
+                        <div class="card-stat yellow"><div class="lbl">Alunos</div><div class="val" id="val-alunos">0</div></div>
+                        <div class="card-stat red"><div class="lbl">Conteúdos</div><div class="val" id="val-conteudos">0</div></div>
+                        <div class="card-stat green"><div class="lbl">Progresso</div><div class="val" id="val-progresso">0%</div></div>
+                    </div>
+
+                </section>
+
+
+                <!-- SEÇÃO 2: USUÁRIOS -->
+                <section id="page-usuarios" class="page-view" style="display: none;">
+                    <div class="sala-aula-container">
+                        <div class="top-select-bar">
+                            <i class="ri-graduation-cap-line" style="font-size:1.5rem; color:#2563eb;"></i>
+                            <select id="select-turma-sala" onchange="trocarTurmaSala(this.value)"></select>
+                            <span id="txt-turma-ativa" style="font-size:0.9rem; color:#16a34a; font-weight:600;"></span>
+                        </div>
+
+                        <div class="cards-grid">
+                            <div class="mini-card"><div class="val" id="mc-modulos">0</div><div class="lbl">Módulos</div></div>
+                            <div class="mini-card"><div class="val" id="mc-aulas">0</div><div class="lbl">Aulas</div></div>
+                            <div class="mini-card"><div class="val" id="mc-exercicios">0</div><div class="lbl">Exercícios</div></div>
+                            <div class="mini-card"><div class="val" id="mc-alunos">0</div><div class="lbl">Formandos</div></div>
+                            <div class="mini-card"><div class="val" id="mc-vagas">0</div><div class="lbl">Vagas Rest.</div></div>
+                            <div class="mini-card"><div class="val" id="mc-progresso">0%</div><div class="lbl">Média Turma</div></div>
+                        </div>
+
+                        <div class="main-layout">
+                            <div class="col-alunos">
+                                <h3 style="font-size:1.1rem; margin-top:0; border-bottom:1px solid #e2e8f0; padding-bottom:12px;">Formandos</h3>
+                                <div id="lista-formandos-turma"></div>
+                            </div>
+
+                            <div class="col-gestao">
+                                <h2 style="margin:0; color:#0f172a;">Painel de Ações da Turma</h2>
+                                <p style="color:#64748b; font-size:0.9rem;">Gerencie o conteúdo didático, visualize módulos/aulas, envie avisos e configure as regras da turma ativa.</p>
+                                <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+                                    <button class="btn-acao" onclick="abrirPopupConteudosGeral()"><i class="ri-book-open-line"></i> Ver Conteúdos</button>
+                                    <button class="btn-acao" style="background:#16a34a;" onclick="abrirPopupAdicionarConteudo()"><i class="ri-add-circle-line"></i> Adicionar Conteúdo</button>
+                                    <button class="btn-acao" style="background:#0284c7;" onclick="abrirPopupAviso()"><i class="ri-notification-badge-line"></i> Dar Aviso</button>
+                                    <button class="btn-acao" style="background:#475569;" onclick="abrirPopupRegras()"><i class="ri-settings-4-line"></i> Mudar Regras</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="popup-generico" class="popup-overlay"><div class="popup-content" id="popup-body"></div></div>    
+                </section>
+
+
+                <!-- SEÇÃO 2.1: RELATORIO -->
+                <section id="page-relatorio" class="page-view" style="display: none;">
+                    <h2>Correção de avaliações</h2>
+                </section>
+
+
+                <!-- SEÇÃO 3: MENSAGENS -->
+                <section id="page-mensagens" class="page-view" style="display: none;">
+                    <h2>Mensagens e Notificações</h2>
+                    <p style="margin-top: 8px; color: #718096;">Comunicações internas enviadas aos funcionários.</p>
+                </section>
+
+
+                <!-- SEÇÃO 4: SEGURANÇA -->
+                <section id="page-seguranca" class="page-view" style="display: none;">
+                    <h2>Segurança & Logs</h2>
+                    <p style="margin-top: 8px; color: #718096;">Registros de sessões, auditoria e tentativas de login.
+                    </p>
+                </section>
+
+
+                <!-- SEÇÃO 5: SISTEMA -->
+                <section id="page-sistema" class="page-view" style="display: none;">
+                    <h2>Configurações do Sistema</h2>
+                    <p style="margin-top: 8px; color: #718096;">Parâmetros gerais de funcionamento da plataforma CM
+                        CETROPROH.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

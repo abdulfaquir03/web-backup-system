@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel · Celeca Imobiliária</title>
+<link rel="icon" href="/logo.jpg">
+<!-- executa antes de tudo: sem token/role volta ao login; o role escolhe o painel visível -->
+<script>
+  if (!localStorage.celeca_token || !localStorage.celeca_role) location.replace('/authentication');
+  document.documentElement.dataset.role = localStorage.celeca_role;
+</script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./comum.css">
+<link rel="stylesheet" href="./dashboard.css">
+</head>
+<body>
+<div id="p-admin" class="painel"></div>
+<div id="p-filial" class="painel"></div>
+<div id="p-marketing" class="painel"></div>
+<div id="p-corretor" class="painel"></div>
+<div id="modal"></div>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="./comum.js"></script>
+<script src="./dashboard.js"></script>
+</body>
+</html>

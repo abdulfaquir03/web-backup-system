@@ -1,0 +1,194 @@
+<!-- 
+  PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+  ******
+  DESENVOLVIDO POR: 
+  |Abdul faquir | Desenvolvedor web
+  |EMAIL: abdulfaquir03@gmail.com
+  |WHATSAPP: +258 879181555
+  |WEBSITE: https://www.lojium.shop/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" type="image/jpg">
+    <title>CM CETROPROHC</title>
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/public.css">
+</head>
+<body>
+
+<div class="unitec-site animate-fade">
+  <nav class="unitec-nav">
+    <div class="unitec-logo"> CM CETROPROHC</div>
+    
+    <ul class="unitec-menu">
+      <li><a href="#public1" onclick="fecharMenuMobile()">Início</a></li>
+      <li><a href="#cursos" onclick="fecharMenuMobile()">Cursos</a></li>
+      <li><a href="#servicos" onclick="fecharMenuMobile()">Serviços</a></li>
+      <li><a href="#" onclick="fecharMenuMobile()">Suporte</a></li>
+      <li class="menu-contacto-mobile" style="display:none;">
+        <a href="#contacto" class="btn-contacto" onclick="fecharMenuMobile()">Contacto</a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="#contacto" class="btn-contacto">Fale conosco</a>
+    </div>
+
+    <button class="menu-toggle" id="btnToggleMenu" onclick="toggleMenuMobile()">
+      <i class="ri-menu-line" id="iconMenu"></i>
+    </button>
+  </nav>
+
+  <header class="unitec-hero">
+    <div class="unitec-hero-text">
+      <h1>Consultoria muapassa e Centro de transformação profissional.</h1>
+      <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 30px;">Acesse capacitações técnicas de alto nível, projetadas com foco em habilidades práticas e exigidas pelo mercado de trabalho.</p>
+      <a href="/authentication" style="background: #003078; font-size: 1rem; color: #fff; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-block;">Acessar a plataforma</a>
+    </div>
+    <div class="hero-wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M1200 0L0 120V120H1200V0Z"></path>
+      </svg>
+    </div>
+  </header>
+
+  <!-- Secção Porquê se Inscrever -->
+  <section class="unitec-section" style="padding-top: 20px;">
+    <h2 class="unitec-section-title">SOBRE <span>NÓS</span></h2>
+    <p style="color: #64748b; max-width: 800px; font-size: 0.95rem; line-height: 1.6;">A CM CETROPROHC nasceu em Lichinga como resposta ao desemprego juvenil e à distância entre formação e a prática profissional. A instituição capacita jovens e profissionais para criarem oportunidades de emprego, autoemprego e prestação de serviços, valorizando o talento local e a economia de serviços.</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon icon-blue"><i class="ri-book-read-line"></i></div>
+        <h3 class="feature-title">Estude ao seu ritmo</h3>
+        <p class="feature-desc">Tenha liberdade e faça os seus horários! Estude quando e onde quiser, quantas vezes precisar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-pink"><i class="ri-award-line"></i></div>
+        <h3 class="feature-title">Certificado Profissional</h3>
+        <p class="feature-desc">Certificado profissional válido em todo o território nacional para turbinar o seu currículo.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-yellow"><i class="ri-line-chart-line"></i></div>
+        <h3 class="feature-title">Desenvolvimento Profissional</h3>
+        <p class="feature-desc">Desenvolva competências para alcançar a sua carreira no mercado de trabalho ou no seu negócio.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-green"><i class="ri-user-star-line"></i></div>
+        <h3 class="feature-title">Professores Qualificados</h3>
+        <p class="feature-desc">Faça os melhores cursos com os melhores especialistas da sua área no conforto de sua casa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secção de Cursos Populares -->
+  <section id="cursos" class="unitec-section">
+    <h2 class="unitec-section-title">CURSOS <span>POPULARES</span></h2>
+    <div id="lista-cursos-publicos" class="unitec-courses-grid">
+      <!-- Skeleton 1 -->
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line long"></div>
+          <div class="skeleton-line medium"></div>
+        </div>
+      </div>
+      <!-- Skeleton 2 -->
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line long"></div>
+          <div class="skeleton-line medium"></div>
+        </div>
+      </div>
+      <!-- Skeleton 3 -->
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line long"></div>
+          <div class="skeleton-line medium"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="unitec-footer" id="contacto">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>CM CETROPROHC</h4>
+        <p>Plataforma oficial de gestão e cursos online. Capacitação prática, rápida e certificada.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="ri-facebook-fill"></i></a>
+          <a href="#"><i class="ri-whatsapp-line"></i></a>
+          <a href="#"><i class="ri-linkedin-fill"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>LINKS RÁPIDOS</h4>
+        <a href="#public1">Início</a>
+        <a href="/authentication">Área do aluno</a>
+        <a href="#">Política de Privacidade</a>
+      </div>
+      <div class="footer-col">
+        <h4>DADOS FISCAIS</h4>
+        <a href="#"><strong>NUIT:</strong> 401873724</a>
+        <a href="#"><strong>NUEL:</strong> 105037972</a>
+        <a href="#">Niassa, Moçambique</a>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACTO</h4>
+        <p><i class="ri-map-pin-line"></i> Lichinga, Niassa, Moçambique</p>
+        <p><i class="ri-phone-line"></i> +258 860421128</p>
+        <p><i class="ri-mail-line"></i> cm.cetroprohc@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CM CETROPROHC. Todos os direitos reservados. Desenvolvido por Abdul faquir.</p>
+    </div>
+  </footer>
+</div>
+
+
+
+  <section id="public2" class="public" style="display: none;">
+        <div>
+            <div>
+                LOGIN
+            </div>
+
+            <div style="display: none;">
+                CADASTRO
+            </div>
+        </div>
+
+        <div style="display: none;">
+            <div>
+                RECUPERAR SENHA
+            </div>
+
+            <div style="display: none;">
+                DEFINIR SENHA
+            </div>
+        </div>
+    </section>
+    <script src="/src/public.js"></script>
+</body>
+</html>

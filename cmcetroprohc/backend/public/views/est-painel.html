@@ -1,0 +1,355 @@
+<!-- 
+    PROJECTO: SISTEMA DE GESTÃO CM - CETROPROHC.
+    ******
+    DESENVOLVIDO POR: 
+    |Abdul faquir | Desenvolvedor web
+    |EMAIL: abdulfaquir03@gmail.com
+    |WHATSAPP: +258 879181555
+    |WEBSITE: https://lojium.vercel.app/abdulfaquir
+-->
+<!DOCTYPE html>
+<html lang="pt-MZ">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" type="image/jpg">
+  <title>{{title}}</title>
+    <meta name="description" content="Plataforma oficial de gestão e cursos online da CM-CETROPROHC. Capacitação prática, rápida e certificada em Lichinga, Niassa." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta property="og:title" content="ARÉA DE MEMBROS - Transformação Profissional e Cursos Online" />
+    <meta property="og:description" content="Aprenda competências práticas para o mercado de trabalho. Cursos certificados em Gestão, Logística, Marketing e muito mais." />
+    <meta property="og:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logótipo e estudantes da CM-CETROPROHC em Lichinga" />
+    <meta property="og:locale" content="pt_MZ" />
+    <meta property="og:site_name" content="CM-CETROPROHC, LTD" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.cmcetroprohc.co.mz/" />
+    <meta name="twitter:title" content="CM-CETROPROHC | Transformação Profissional" />
+    <meta name="twitter:description" content="Capacitação prática e consultoria de negócios em Niassa. Inscreva-se nos nossos cursos online e presenciais." />
+    <meta name="twitter:image" content="https://i.ibb.co/TBhjTtj3/62475d85-cb2a-415d-a285-b5053eb4a5ef.jpg" />
+  <script>
+    (function checkSuperAdmin() {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        window.location.href = '/authentication'
+        return
+      }
+      try {
+        const payloadBase64 = token.split('.')[1]
+        const decoded = JSON.parse(atob(payloadBase64))
+        const role = decoded.code || decoded.type || ''
+        if (role !== 'ALU') {
+          window.location.href = '/authentication'
+        }
+      } catch (e) {
+        localStorage.removeItem('token')
+        window.location.href = '/authentication'
+      }
+    })()
+  </script>
+</head>
+
+<body>
+  <div id="top-loader" class="top-loader"></div>
+  <header>
+    <div class="header-brand">
+      <i class="ri-graduation-cap-line" style="font-size: 1.4rem;"></i>
+      <span>CM CETROPROH</span>
+    </div>
+
+    <div class="header-right">
+      <button class="header-icon-btn">
+        <i class="ri-notification-3-line"></i>
+      </button>
+      <div class="header-profile">
+        <i class="ri-user-line"></i>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <nav class="sidebar">
+      <div class="nav-item active" data-target="home" onclick="navigate('home')">
+        <i class="ri-compass-line"></i>
+        <span>Explorar</span>
+      </div>
+
+      <div class="nav-item" data-target="cursos" onclick="navigate('cursos')">
+        <i class="ri-send-ins-line"></i>
+        <span>Meus cursos</span>
+      </div>
+
+      <!-- <div class="nav-item" data-target="certificados" onclick="navigate('certificados')">
+        <i class="ri-certificate-2-line"></i>
+        <span>Certificados</span>
+      </div> -->
+
+      <!-- Exemplo de item no menu de navegação -->
+      <div class="nav-item" data-target="financeiro" onclick="navigate('financeiro')">
+        <i class="ri-bank-card-2-line"></i>
+        <span>Estado financeiro</span>
+      </div>
+
+      <div class="nav-item" data-target="perfil" onclick="navigate('perfil')">
+        <i class="ri-user-settings-line"></i>
+        <span>Meu perfil</span>
+      </div>
+    </nav>
+
+    <!-- Área Principal de Conteúdo -->
+    <main class="content">
+
+      <!-- PÁGINA 1: INÍCIO -->
+      <section id="page-home" class="page-view">
+        <div id="alertas-container" class="alertas-container"></div>
+        <div class="explorar-header">
+          <div class="welcome-banner">
+            <span class="greeting-badge">👋 Olá, bem-vindo de volta!</span>
+            <h1>Explorar Cursos & Capacitações</h1>
+            <p>Transforme a sua carreira com as nossas formações práticas e certificadas.</p>
+          </div>
+        </div>
+
+        <div id="cursos-grid" class="cursos-grid">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div><br><br><br><br>
+
+        <div id="modal-curso" class="modal-overlay" style="display: none;">
+          <div class="modal-container">
+            <button class="modal-close" onclick="fecharModalCurso()">✕</button>
+            <div id="modal-curso-conteudo"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 2: CURSOS -->
+      <section id="page-cursos" class="page-view" style="display: none;">
+<div id="area-membros-aluno" style="padding: 20px; font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; min-height: 100vh;">
+    <!-- Topo: Seletor de Turma & Informações -->
+    <div style="background: #1e293b; color: #fff; padding: 20px 24px; border-radius: 30px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);">
+        <div>
+            <span style="font-size: 0.75rem; text-transform: uppercase; tracking: 1px; color: #94a3b8; font-weight: 700;">Área de Membros</span>
+            <h2 id="nome-curso-ativo" style="margin: 4px 0 0 0; font-size: 1.3rem; font-weight: 700; color: #fff;">A carregar curso...</h2>
+        </div>
+        <div style="min-width: 260px;">
+            <label style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 4px; font-weight: 600;">Selecione a sua Turma:</label>
+            <select id="select-turma-aluno" onchange="selecionarTurmaAtiva(this.value)" style="width: 100%; padding: 10px 16px; border-radius: 30px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 0.85rem; outline: none; cursor: pointer;">
+                <!-- Opções injetadas dinamicamente -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Navegação por Abas (Estilo Hotmart) -->
+    <div style="display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 6px;">
+        <button type="button" class="tab-btn active" onclick="trocarAbaAluno('aulas', this)" style="padding: 10px 20px; border-radius: 30px; border: none; background: #2563eb; color: #fff; font-weight: 600; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px;"><i class="ri-play-circle-line"></i> Aulas & Video Player</button>
+        <button type="button" class="tab-btn" onclick="trocarAbaAluno('exercicios', this)" style="padding: 10px 20px; border-radius: 30px; border: 1px solid #cbd5e1; background: #fff; color: #475569; font-weight: 600; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px;"><i class="ri-file-list-3-line"></i> Exercícios & Avaliações</button>
+        <button type="button" class="tab-btn" onclick="trocarAbaAluno('materiais', this)" style="padding: 10px 20px; border-radius: 30px; border: 1px solid #cbd5e1; background: #fff; color: #475569; font-weight: 600; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px;"><i class="ri-folder-download-line"></i> Materiais de Apoio</button>
+    </div>
+
+    <!-- ABA 1: PLAYER & AULAS -->
+    <div id="aba-aulas" class="conteudo-aba">
+        <div style="display: grid; grid-template-columns: 2.2fr 1fr; gap: 20px;">
+            <!-- Player Principal e Detalhes da Aula -->
+            <div>
+                <div style="background: #000; border-radius: 30px; overflow: hidden; position: relative; aspect-ratio: 16/9; box-shadow: 0 10px 20px rgba(0,0,0,0.15);" id="container-player-video">
+                    <div style="display: flex; height: 100%; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.9rem;">
+                        <i class="ri-play-line" style="font-size: 2rem; margin-right: 8px;"></i> Selecione uma aula ao lado para reproduzir
+                    </div>
+                </div>
+                <div style="background: #fff; padding: 20px; border-radius: 30px; margin-top: 16px; border: 1px solid #e2e8f0;">
+                    <h3 id="titulo-aula-ativa" style="margin: 0 0 8px 0; color: #1e293b; font-size: 1.1rem;">Nenhuma aula selecionada</h3>
+                    <p id="desc-aula-ativa" style="margin: 0; color: #64748b; font-size: 0.85rem; line-height: 1.5;">Selecione um módulo e uma aula da lista para começar a assistir.</p>
+                </div>
+            </div>
+
+            <!-- Lista de Módulos e Aulas -->
+            <div style="background: #fff; padding: 20px; border-radius: 30px; border: 1px solid #e2e8f0; max-height: 550px; overflow-y: auto;">
+                <h4 style="margin: 0 0 16px 0; font-size: 0.95rem; color: #1e293b;"><i class="ri-stack-line" style="color: #2563eb;"></i> Conteúdo do Curso</h4>
+                <div id="lista-modulos-aulas"><!-- Injetado dinamicamente --></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABA 2: EXERCÍCIOS & TRABALHOS -->
+    <div id="aba-exercicios" class="conteudo-aba" style="display: none;">
+        <div style="background: #fff; padding: 24px; border-radius: 30px; border: 1px solid #e2e8f0;">
+            <h3 style="margin: 0 0 16px 0; font-size: 1.1rem; color: #1e293b;"><i class="ri-task-line" style="color: #2563eb;"></i> Trabalhos e Exercícios Práticos</h3>
+            <div id="lista-exercicios-container"><!-- Injetado dinamicamente --></div>
+        </div>
+    </div>
+
+    <!-- ABA 3: MATERIAIS DE APOIO -->
+    <div id="aba-materiais" class="conteudo-aba" style="display: none;">
+        <div style="background: #fff; padding: 24px; border-radius: 30px; border: 1px solid #e2e8f0;">
+            <h3 style="margin: 0 0 16px 0; font-size: 1.1rem; color: #1e293b;"><i class="ri-attachment-line" style="color: #2563eb;"></i> Ficheiros e Documentos para Download</h3>
+            <div id="lista-materiais-container"><!-- Injetado dinamicamente --></div>
+        </div>
+    </div>
+</div>
+      </section>
+
+      <!-- PÁGINA 3: AULAS -->
+      <section id="page-certificados" class="page-view" style="display: none;">
+        <h2>Emissão de certificados</h2>
+      </section>
+
+      <!-- PÁGINA 4: FINANCEIRO -->
+      <section id="page-financeiro" class="page-view" style="display: none;">
+        <h2>Situação Financeira</h2>
+        <p style="margin-top: 8px; color: #64748B;">Histórico de mensalidades, propropina e comprovantes.</p>
+        <div class="inscricoes-grid" id="gridInscricoes"></div>
+
+        <div class="modal-overlay-fin" id="modalFinanceiro" style="display: none;">
+          <div class="modal-card-fin">
+            <div class="modal-header-fin">
+              <div>
+                <h3 id="modalCodigo">Inscrição #---</h3>
+                <span class="badge" id="modalStatusBadge">PENDENTE</span>
+              </div>
+              <button class="btn-close" onclick="fecharModalFinanceiro()"><i class="ri-close-line"></i></button>
+            </div>
+
+            <div class="resumo-financeiro-box">
+              <div class="resumo-item"><span>Valor do Curso:</span><strong id="mPreco">0.00 MT</strong></div>
+              <div class="resumo-item"><span>Taxa de Inscrição:</span><strong id="mTaxa">0.00 MT</strong></div>
+              <div class="resumo-item"><span>Certificado:</span><strong id="mCert">0.00 MT</strong></div>
+            </div>
+
+            
+            <h4>Prestação & Mensalidades</h4>
+            <div class="prestacoes-list" id="listaPrestacoes"></div>
+            <div class="prestacoes-list" id="listaUrgencia"></div>
+            
+            <div class="pagamento-contas-area">
+              <button class="btn-contas" onclick="carregarContasPagamento()"><i class="ri-bank-card-line"></i> Ver Contas para Pagamento</button>
+              <div class="contas-skeleton" id="contasSkeleton" style="display: none;">
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+              </div>
+              <div class="contas-grid" id="contasGrid"></div>
+            </div>
+
+            <div class="upload-comprovativo-box">
+              <h4>Anexar Comprovativo</h4>
+              <input type="file" id="inputComprovativo" accept="image/*">
+              <button class="btn-enviar-comp" onclick="submeterComprovativo()"><i class="ri-upload-2-line"></i> Submeter Comprovativo</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 5: PERFIL -->
+      <section id="page-perfil" class="page-view" style="display: none;">
+        <div class="pf-header">
+          <div class="pf-avatar-box">
+            <img id="pf-img-preview" src="" alt="Foto de perfil" style="display:none;" />
+            <div id="pf-avatar-iniciais" class="pf-avatar-iniciais">--</div>
+          </div>
+          <div>
+            <h2 id="pf-header-nome">---</h2>
+            <p id="pf-header-email" style="margin: 4px 0 0; color: #64748B;">---</p>
+          </div>
+        </div>
+
+        <div class="pf-tabs">
+          <button class="pf-tab-btn active" onclick="trocarAbaPerfil(0)">1. Dados Pessoais & Emergência</button>
+          <button class="pf-tab-btn" onclick="trocarAbaPerfil(1)">2. Documentos & Identificação</button>
+          <button class="pf-tab-btn" onclick="trocarAbaPerfil(2)">3. Residência & Académico</button>
+        </div>
+
+        <!-- Grupo 1: Dados Pessoais & Emergência (10 campos) -->
+        <form id="pf-grupo-0" class="pf-grupo-form active" onsubmit="event.preventDefault(); salvarGrupo0();">
+          <div class="pf-grid">
+            <div class="pf-field"><label>Nome Completo</label><input type="text" id="pf-nome" required /></div>
+            <div class="pf-field"><label>Nome do Pai</label><input type="text" id="pf-nome-pai" required /></div>
+            <div class="pf-field"><label>Nome da Mãe</label><input type="text" id="pf-nome-mae" required /></div>
+            <div class="pf-field"><label>Gênero</label><select id="pf-genero"><option value="M">Masculino</option><option value="F">Feminino</option><option value="Outro">Outro</option></select></div>
+            <div class="pf-field"><label>Data de Nascimento</label><input type="date" id="pf-data-nasc" required /></div>
+            <div class="pf-field"><label>Estado Civil</label><select id="pf-estado-civil"><option value="Solteiro(a)">Solteiro(a)</option><option value="Casado(a)">Casado(a)</option><option value="Divorciado(a)">Divorciado(a)</option><option value="Viuvo(a)">Viúvo(a)</option></select></div>
+            <div class="pf-field"><label>Telefone Principal</label><input type="text" id="pf-celular" required /></div>
+            <div class="pf-field"><label>Contacto WhatsApp</label><input type="text" id="pf-whatsapp" /></div>
+            <div class="pf-field"><label>Nome do Encarregado / Emergência</label><input type="text" id="pf-encarregado-nome" required /></div>
+            <div class="pf-field"><label>Telefone do Encarregado / Emergência</label><input type="text" id="pf-encarregado-telefone" required /></div>
+          </div>
+          <button type="submit" class="pf-btn-salvar">Atualizar Dados Pessoais & Emergência</button>
+        </form>
+
+        <!-- Grupo 2: Documentos & Identificação (10 campos) -->
+        <form id="pf-grupo-1" class="pf-grupo-form" onsubmit="event.preventDefault(); salvarGrupo1();">
+          <div class="pf-grid">
+            <div class="pf-field"><label>Tipo de Documento</label><select id="pf-doc-tipo"><option value="BI">BI (Bilhete de Identidade)</option><option value="Passaporte">Passaporte</option><option value="DIRE">DIRE</option><option value="Certidao">Certidão de Nascimento</option></select></div>
+            <div class="pf-field"><label>Número do Documento</label><input type="text" id="pf-doc-numero" required /></div>
+            <div class="pf-field"><label>Data de Emissão</label><input type="date" id="pf-doc-emissao" required /></div>
+            <div class="pf-field"><label>Data de Validade</label><input type="date" id="pf-doc-validade" required /></div>
+            <div class="pf-field"><label>Local de Emissão</label><input type="text" id="pf-doc-local" placeholder="Ex: Maputo" required /></div>
+            <div class="pf-field"><label>Número NUIT</label><input type="text" id="pf-nuit" placeholder="Ex: 123456789" required /></div>
+            <div class="pf-field"><label>Nacionalidade</label><input type="text" id="pf-nacionalidade" value="Moçambicana" required /></div>
+            <div class="pf-field"><label>Foto Tipo Passe / Perfil</label><input type="file" id="pf-foto-input" accept="image/*" /></div>
+            <div class="pf-field"><label>Documento de Identificação (Frente)</label><input type="file" id="pf-doc-frente" accept="image/*" /></div>
+            <div class="pf-field"><label>Documento de Identificação (Verso)</label><input type="file" id="pf-doc-verso" accept="image/*" /></div>
+          </div>
+          <button type="submit" class="pf-btn-salvar">Atualizar Documentos & Identificação</button>
+        </form>
+
+        <!-- Grupo 3: Residência & Dados Académicos (10 campos) -->
+        <form id="pf-grupo-2" class="pf-grupo-form" onsubmit="event.preventDefault(); salvarGrupo2();">
+          <div class="pf-grid">
+            <div class="pf-field"><label>Província de Residência</label><input type="text" id="pf-provincia" placeholder="Ex: Maputo" required /></div>
+            <div class="pf-field"><label>Distrito / Cidade</label><input type="text" id="pf-distrito" placeholder="Ex: Matola" required /></div>
+            <div class="pf-field"><label>Posto Administrativo / Localidade</label><input type="text" id="pf-posto-admin" placeholder="Ex: Infulene" required /></div>
+            <div class="pf-field"><label>Bairro</label><input type="text" id="pf-bairro" required /></div>
+            <div class="pf-field"><label>Avenida / Rua / Quarteirão</label><input type="text" id="pf-rua" required /></div>
+            <div class="pf-field"><label>Número da Casa</label><input type="text" id="pf-casa-numero" /></div>
+            <div class="pf-field"><label>Nível de Escolaridade</label><select id="pf-escolaridade"><option value="Basico">Ensino Básico (7ª Classe)</option><option value="Geral">Ensino Geral (10ª Classe)</option><option value="Medio">Ensino Médio (12ª Classe)</option><option value="Licenciatura">Licenciatura / Superior</option></select></div>
+            <div class="pf-field"><label>Última Instituição Frequentada</label><input type="text" id="pf-escola-anterior" placeholder="Ex: Escola Secundária..." required /></div>
+            <div class="pf-field"><label>Ano de Conclusão</label><input type="number" id="pf-ano-conclusao" placeholder="Ex: 2023" required /></div>
+            <div class="pf-field"><label>Certificado de Habilitações (PDF/Imagem)</label><input type="file" id="pf-certificado-file" accept="image/*,application/pdf" /></div>
+          </div>
+          <button type="submit" class="pf-btn-salvar">Atualizar Residência & Dados Académicos</button>
+        </form> <br><br><br><br>
+      </section>
+
+    </main>
+  </div>
+
+
+  <div class="bottom-nav">
+    <div class="bottom-nav-item active" data-target="home" onclick="navigate('home')">
+      <i class="ri-compass-line"></i>
+      <span>Explorar</span>
+    </div>
+
+    <div class="bottom-nav-item" data-target="cursos" onclick="navigate('cursos')">
+      <i class="ri-send-ins-line"></i>
+      <span>Turmas</span>
+    </div>
+
+    <!-- <div class="bottom-nav-item" data-target="certificados" onclick="navigate('certificados')">
+      <i class="ri-certificate-2-line"></i>
+      <span>Certificados</span>
+    </div> -->
+
+    <div class="bottom-nav-item" data-target="financeiro" onclick="navigate('financeiro')">
+      <i class="ri-bank-card-2-line"></i>
+      <span>Financeiro</span>
+    </div>
+
+    <div class="bottom-nav-item" data-target="perfil" onclick="navigate('perfil')">
+      <i class="ri-user-3-line"></i>
+      <span>Perfil</span>
+    </div>
+  </div>
+</body>
+
+</html>

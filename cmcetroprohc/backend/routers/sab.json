@@ -1,0 +1,173 @@
+[
+    {
+        "id": "c1764228914788",
+        "nome": "Produção e comercialização de sabonetes",
+        "desc": "Bem-vindo ao Curso de Sabonetes Naturais! 🌿💚*  Você sempre quis criar seus próprios sabonetes artesanais com ingredientes orgânicos e sustentáveis? Então, você está no lugar certo! Neste curso, você aprenderá a criar sabonetes naturais e personalizados para diferentes tipos de pele e necessidades.  *Curso de Sabonetes Naturais 🌿*  Aprenda a criar sabonetes artesanais com ingredientes orgânicos!  - Formulação de sabonetes - Ingredientes naturais - Técnicas de produção  _Bônus:_ Sabão Bingo, Sabão Glicerinado e Sabão de Coco! 🎁  Vamos juntos começar do zero ao avançado. Sucessos! 👏🥳",
+        "autor": "Hélder Francisco Muabse",
+        "whatsapp": "844980257",
+        "link": "https://chat.whatsapp.com/BYtv2rYCgiH1lGz1I78fjC?mode=wwt",
+        "nivel": "avançado",
+        "data": "27/11/2025 09:35:14",
+        "status": "activo",
+        "comprovativo": "",
+        "aulas": [
+            {
+                "id": "001",
+                "nome": "Aprenda a Produzir Sabonete de Aloe vera",
+                "url": "https://youtu.be/j_dsC4U6jgs?feature=shared",
+                "data": "08/01/2026 20:39:55"
+            },
+            {
+                "id": "bd642207",
+                "nome": "Aprenda a Produzir Sabonete de Cenoura",
+                "url": "https://youtu.be/4chS9kI8v0A?si=0uOt93XG43v-FZk8",
+                "data": "09/01/2026 08:27:52"
+            },
+            {
+                "id": "956af4c2",
+                "nome": "Aprenda a Produzir Sabonete de Folha de Moringa",
+                "url": "https://youtu.be/h4eEkInpswQ?si=yIiTxY9B5vkFoUwH",
+                "data": "09/01/2026 08:28:40"
+            },
+            {
+                "id": "6bbc7bb3",
+                "nome": "Sabonete de carvão ativado",
+                "url": "https://youtu.be/yFNEh1WGvLM?si=_9C52iCBjrGcHxMI",
+                "data": "17/01/2026 00:45:55"
+            },
+            {
+                "id": "2528eb4d",
+                "nome": "Sabonete de Pipino",
+                "url": "https://youtu.be/pPPJGrYPcSI?si=4m5FycKwPHlvuq2A",
+                "data": "17/01/2026 00:46:22"
+            },
+            {
+                "id": "ea1eaa32",
+                "nome": "Sabonete de Casca de banana",
+                "url": "https://youtu.be/KGcYFN3xsWc?si=2Jxb1lV6RSsP1hxX",
+                "data": "17/01/2026 00:46:46"
+            },
+            {
+                "id": "9852983c",
+                "nome": "Multiplicação de Qualquer sabonete",
+                "url": "https://youtu.be/NzI0cdcYj4E?si=EG2TYRUWa6RMy4ZP",
+                "data": "17/01/2026 00:47:29"
+            },
+            {
+                "id": "56da1032",
+                "nome": "Aprenda sabonete de pó de arroz",
+                "url": "https://youtu.be/xgqQ-jmn130?si=7rY3YWruG35e1tLo",
+                "data": "27/02/2026 13:06:15"
+            },
+            {
+                "id": "9329efb8",
+                "nome": "Aprenda a produzir Máscaras faciais",
+                "url": "https://youtu.be/Bvxv4cXXR7U?si=PdT2XhQAkPjBf8zX",
+                "data": "27/02/2026 13:07:08"
+            },
+            {
+                "id": "ffbee359",
+                "nome": "Aprenda a embalar sabonetes",
+                "url": "https://youtu.be/L62ZbhLsv9Y?si=B8Ow61cGVTnxSPzh",
+                "data": "27/02/2026 13:10:11"
+            },
+            {
+                "id": "011",
+                "nome": "Aprenda a produzir sabão em Barra",
+                "url": "https://youtu.be/ZZ1Gmw4v8Eg?si=5qS1n6fZwxJ0N9P0",
+                "data": "03/07/2026 15:31"
+            },
+            {
+                "id": "012",
+                "nome": "Aprenda a produzir produto limpa panelas e alumínio",
+                "url": "https://youtu.be/RvvJ7tJgWJI?si=Gfntb09sjVKSq9XY",
+                "data": "03/07/2026 15:33"
+            },
+            {
+                "id": "013",
+                "nome": "Aprenda sabão glicerinado",
+                "url": "https://youtu.be/ty_Fe5k0KxQ?si=k3HTsyGDxh94Wcf5",
+                "data": "12/07/2026 20:41"
+            },
+            {
+                "id": "014",
+                "nome": "Aprenda sabão de coco",
+                "url": "https://youtu.be/946m6_2-Qr0?si=anLAP_D4GlcA_7gB",
+                "data": "12/07/2026 20:42"
+            },
+            {
+                "id": "015",
+                "nome": "Produção de sabão líquido",
+                "url": "https://youtu.be/GaIsEC9nPLk?si=ylyGsXVUCg6bPRtS",
+                "data": "10/08/2026 10:44"
+            }
+        ],
+        "materiais": [
+            {
+                "id": "mat001",
+                "nome": "E-book Produção e venda de sabonetes Naturais",
+                "descricao": "Siga passo a passo e produza sabonetes naturais usando somente o E-book.",
+                "url": "https://drive.google.com/file/d/13glMY903oldhpQ7ZfWEzMzL_nYbfDUHc/view?usp=drivesdk",
+                "data": "07/01/2026 18:28:07"
+            }
+        ],
+        "config": {},
+        "modulos": []
+    },
+    {
+        "id": 2,
+        "nome": "Produção de produtos de limpeza",
+        "categoria": "Avançado",
+        "autor": "Hélder Francisco Muabse",
+        "whatsapp": "879427462",
+        "data": "25/05/2026 21:04",
+        "status": "activo",
+        "plan": "",
+        "aulas": [
+            {
+                "id": "001",
+                "nome": "Produção de sabão em barra",
+                "url": "https://youtu.be/ZZ1Gmw4v8Eg?si=EhhwTDCFh362P1qN",
+                "data": "03/06/2026 06:48"
+            },
+            {
+                "id": "002",
+                "nome": "Produção de sabão Líquido",
+                "url": "https://youtu.be/GaIsEC9nPLk?si=EqfZIq38HDV49FnN",
+                "data": "03/06/2026 06:49"
+            },
+            {
+                "id": "003",
+                "nome": "Produção limpa panelas e alumínio (fogão)",
+                "url": "https://youtu.be/RvvJ7tJgWJI?si=MtxkLhd4lgQztVUB",
+                "data": "03/06/2026 06:49"
+            },
+            {
+                "id": "004",
+                "nome": "Sabão Glicerinado parte 1 e 2",
+                "url": "https://youtu.be/ty_Fe5k0KxQ?si=eQp4Gd9i5-vjDe9L",
+                "data": "03/06/2026 06:51"
+            },
+            {
+                "id": "005",
+                "nome": "Sabão de côco",
+                "url": "https://youtu.be/946m6_2-Qr0?si=6sXks9jfx76JRisl",
+                "data": "03/06/2026 06:52"
+            },
+            {
+                "id": "006",
+                "nome": "Sabão em pó",
+                "url": "https://youtu.be/jGEmrswIzeI?si=IuCooQ-vCm7PmsuK",
+                "data": "03/06/2026 06:52"
+            },
+            {
+                "id": "007",
+                "nome": "Produção de limpa vidros",
+                "url": "https://youtu.be/Vkv9DcYVi64?si=In1yqzWwG-xIeRfR",
+                "data": "03/06/2026 22:27"
+            }
+        ],
+        "materiais": [],
+        "info": {}
+    }
+]
